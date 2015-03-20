@@ -127,10 +127,6 @@ public class RaceResult {
     @Override
     public boolean equals(Object obj) {
         RaceResult that = (RaceResult) obj;
-        return that.getRaceId().equals(this.getRaceId()) && that.getHorseId().equals(this.getHorseId()) && that.getJockeyId().equals(this.getHorseId())
-                && that.getHorseName().equals(this.getHorseName()) && that.getJockeyName().equals(this.getJockeyName())
-                && that.getRandomSpeed().equals(this.getRandomSpeed()) && that.getLuckFactor().equals(this.getLuckFactor())
-                && that.getJockeySkillCalc().equals(this.getJockeySkillCalc()) && that.getAverageSpeed().equals(this.getAverageSpeed())
-                && that.getRank().equals(this.getRank());
+        return that.getRaceId().equals(this.getRaceId());
     }
 }

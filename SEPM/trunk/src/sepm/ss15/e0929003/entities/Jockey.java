@@ -83,7 +83,6 @@ public class Jockey {
     @Override
     public boolean equals(Object obj) {
         Jockey that = (Jockey) obj;
-        return that.getId().equals(this.getId()) && that.getFirstName().equals(this.getFirstName()) && that.getLastName().equals(this.getLastName())
-             && that.getCountry().equals(this.getCountry()) && that.getSkill().equals(this.getSkill()) && that.isDeleted().equals(this.isDeleted);
+        return that.getId().equals(this.getId());
     }
 }
