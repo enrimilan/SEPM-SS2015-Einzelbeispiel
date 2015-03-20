@@ -12,7 +12,6 @@ public interface JockeyDAO {
      * @return the created jockey(containing the id) if no errors occurred.
      * @throws DAOException if the jockey couldn't be created. Reasons for that:
      *  - jockey is null.
-     *  - at least one of the attributes firstName, lastName, country, skill, isDeleted is null.
      *  - other reasons depending on the chosen DAO implementation.
      */
     public Jockey create(Jockey jockey) throws DAOException;
@@ -25,7 +24,6 @@ public interface JockeyDAO {
      * @return the list of jockeys if no errors occurred.
      * @throws DAOException if the search couldn't be performed. Reasons for that:
      *  - to or from are null.
-     *  - the values of the attribute skill are not both set or they are not both null.
      *  - other reasons depending on the chosen DAO implementation.
      */
     public List<Jockey> search(Jockey from, Jockey to) throws DAOException;
@@ -35,7 +33,6 @@ public interface JockeyDAO {
      * @param jockey the jockey's new values.
      * @throws DAOException if the jockey couldn't be updated. Reasons for that:
      *  - jockey is null.
-     *  - at least one of the attributes id, firstName, lastName, country, skill, isDeleted is null.
      *  - a jockey with that id doesn't exist.
      *  - other reasons depending on the chosen DAO implementation.
      */
