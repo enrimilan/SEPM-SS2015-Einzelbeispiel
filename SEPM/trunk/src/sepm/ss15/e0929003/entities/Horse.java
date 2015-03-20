@@ -94,8 +94,6 @@ public class Horse {
     @Override
     public boolean equals(Object obj) {
         Horse that = (Horse) obj;
-        return that.getId().equals(this.getId()) && that.getName().equals(this.getName()) && that.getAge().equals(this.getAge())
-                && that.getMinSpeed().equals(this.getMinSpeed()) && that.getMaxSpeed().equals(this.getMaxSpeed())
-                && that.getPicture().equals(this.getPicture()) && that.isDeleted().equals(this.isDeleted());
+        return that.getId().equals(this.getId());
     }
 }
