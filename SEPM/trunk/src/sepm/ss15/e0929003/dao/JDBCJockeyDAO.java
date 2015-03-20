@@ -22,14 +22,12 @@ public class JDBCJockeyDAO implements JockeyDAO {
     public Jockey create(Jockey jockey) throws DAOException {
         logger.debug("Entering create method and trying to insert into the table Jockey:\n{}",jockey);
         checkIfJockeyIsNull(jockey);
-        checkIfAttributesAreNull(0,jockey.getFirstName(),jockey.getLastName(),jockey.getCountry(),jockey.getSkill(),jockey.isDeleted());
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         try {
-            PreparedStatement createStmt = con.prepareStatement("INSERT INTO Jockey(first_name,last_name,country,skill) VALUES (?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement createStmt = con.prepareStatement("INSERT INTO Jockey(first_name,last_name,country,skill) VALUES (?,?,?,"+jockey.getSkill()+");", Statement.RETURN_GENERATED_KEYS);
             createStmt.setString(1, jockey.getFirstName());
             createStmt.setString(2,jockey.getLastName());
             createStmt.setString(3,jockey.getCountry());
-            createStmt.setDouble(4,jockey.getSkill());
             createStmt.executeUpdate();
             ResultSet rs = createStmt.getGeneratedKeys();
             rs.next();
@@ -83,10 +81,9 @@ public class JDBCJockeyDAO implements JockeyDAO {
     public void update(Jockey jockey) throws DAOException {
         logger.debug("Entering update method with:\n{}",jockey);
         checkIfJockeyIsNull(jockey);
-        checkIfAttributesAreNull(jockey.getId(),jockey.getFirstName(),jockey.getLastName(),jockey.getCountry(),jockey.getSkill(),jockey.isDeleted());
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         try {
-            PreparedStatement updateStmt = con.prepareStatement("UPDATE Jockey SET first_name=?,last_name=?,country=?,skill=?,is_deleted=? WHERE id=?;");
+            PreparedStatement updateStmt = con.prepareStatement("UPDATE Jockey SET first_name=?,last_name=?,country=?,skill="+jockey.getSkill()+",is_deleted="+jockey.isDeleted()+" WHERE id="+jockey.getId()+";");
             ResultSet rs = con.createStatement().executeQuery("SELECT* FROM Jockey WHERE id="+jockey.getId()+";");
             if(!rs.next()){
                 logger.debug("Jockey with id {} doesn't exist.",jockey.getId());
@@ -95,9 +92,6 @@ public class JDBCJockeyDAO implements JockeyDAO {
             updateStmt.setString(1,jockey.getFirstName());
             updateStmt.setString(2, jockey.getLastName());
             updateStmt.setString(3, jockey.getCountry());
-            updateStmt.setDouble(4,jockey.getSkill());
-            updateStmt.setBoolean(5, jockey.isDeleted());
-            updateStmt.setInt(6, jockey.getId());
             updateStmt.executeUpdate();
             con.commit();
             logger.debug("Successfully updated jockey in the table Jockey:\n{}",jockey);
@@ -116,6 +110,7 @@ public class JDBCJockeyDAO implements JockeyDAO {
     @Override
     public void delete(Jockey jockey) throws DAOException {
         logger.debug("Entering delete method with:\n{}",jockey);
+        checkIfJockeyIsNull(jockey);
         jockey.setDeleted(true);
         update(jockey);
     }
@@ -124,13 +119,6 @@ public class JDBCJockeyDAO implements JockeyDAO {
         if(jockey == null){
             logger.debug("Jockey is null.");
             throw new DAOException("Jockey can't be null.");
-        }
-    }
-
-    private void checkIfAttributesAreNull(Integer id, String firstName, String lastName, String country, Double skill, Boolean isDeleted) throws DAOException {
-        if(id==null || firstName==null || lastName==null || country==null || skill==null || isDeleted==null){
-            logger.debug("One or more variables are not initialized.");
-            throw new DAOException("One or more variables are not initialized.");
         }
     }
 }
