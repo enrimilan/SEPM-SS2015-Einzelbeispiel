@@ -18,8 +18,7 @@ public class JDBCHorseDAOTest extends AbstractHorseDAOTest{
         Horse validHorse2 = new Horse(null,"Test Horse 2",24,70.0,95.0,"",false);
         Horse invalidHorse1 = new Horse(null,"Test Horse 3",-1,70.0,80.0,"",false);
         Horse invalidHorse2 = new Horse(-1,"Test Horse 4",29,70.0,80.0,"",false);
-        Horse invalidHorse3 = new Horse(null,"Test Horse 5",29,null,80.0,"",false);
-        setHorses(validHorse1,validHorse2,invalidHorse1,invalidHorse2,invalidHorse3);
+        setHorses(validHorse1,validHorse2,invalidHorse1,invalidHorse2);
     }
 
     @After
