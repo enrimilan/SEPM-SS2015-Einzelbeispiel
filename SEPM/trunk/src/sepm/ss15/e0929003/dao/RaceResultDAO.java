@@ -13,7 +13,6 @@ public interface RaceResultDAO {
      * @throws DAOException if one or more race results couldn't be created. Reasons for that:
      *  - raceResults is null.
      *  - at least one of the race results is null.
-     *  - in one of the results, at least one of the attributes raceId, horseId, jockeyId, horseName, jockeyName, randomSpeed, luckFactor, jockeySkillCalc, averageSpeed, rank is null.
      *  - a race result with the same raceId and horseId already exists.
      *  - a race result with the same raceId and jockeyId already exists.
      *  - other reasons depending on the chosen DAO implementation.

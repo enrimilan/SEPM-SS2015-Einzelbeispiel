@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/ValidationException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -79,8 +78,8 @@
       <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="884">
-              <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="111" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1241">
+              <caret line="168" column="43" selection-start-line="168" selection-start-column="43" selection-end-line="168" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#createHorse#0;class#Service#0" expanded="false" />
@@ -88,10 +87,26 @@
                 <element signature="docComment;method#deleteHorse#0;class#Service#0" expanded="false" />
                 <element signature="docComment;method#searchHorses#0;class#Service#0" expanded="false" />
                 <element signature="docComment;method#createJockey#0;class#Service#0" expanded="false" />
-                <element signature="docComment;method#editJockey#0;class#Service#0" expanded="false" />
                 <element signature="docComment;method#deleteJockey#0;class#Service#0" expanded="false" />
                 <element signature="docComment;method#searchJockeys#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#addJockeyAndHorseToRace#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#removeJockeyAndHorseFromRace#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#getLastRemovedHorseFromRace#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#getLastRemovedJockeyFromRace#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#startRaceSimulation#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#searchRaceResults#0;class#Service#0" expanded="false" />
+                <element signature="docComment;method#evaluateStatistics#0;class#Service#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RaceResult.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
+              <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,8 +114,8 @@
       <file leaf-file-name="SimpleService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="853" max-vertical-offset="3264">
-              <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2537" max-vertical-offset="3519">
+              <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#createHorse#0;class#SimpleService#0" expanded="false" />
@@ -111,6 +126,7 @@
                 <element signature="method#editJockey#0;class#SimpleService#0" expanded="false" />
                 <element signature="method#deleteJockey#0;class#SimpleService#0" expanded="false" />
                 <element signature="method#searchJockeys#0;class#SimpleService#0" expanded="false" />
+                <element signature="e#5366#5378#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,53 +135,22 @@
       <file leaf-file-name="JDBCRaceResultDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1049" max-vertical-offset="2448">
-              <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RaceResultDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="850">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="458" max-vertical-offset="1547">
+              <caret line="25" column="84" selection-start-line="25" selection-start-column="84" selection-end-line="25" selection-end-column="84" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#createRaceResults#0;class#JDBCRaceResultDAO#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Horse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java">
+      <file leaf-file-name="RaceResultDAO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="920" max-vertical-offset="1292">
-              <caret line="96" column="48" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Jockey.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="784" max-vertical-offset="1190">
-              <caret line="86" column="4" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RaceResult.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2352941" vertical-offset="1127" max-vertical-offset="1700">
-              <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.7735294" vertical-offset="434" max-vertical-offset="833">
+              <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
               <folding>
-                <element signature="e#1463#1464#0" expanded="true" />
-                <element signature="e#1495#1496#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,11 +178,9 @@
         <option value="$PROJECT_DIR$/src/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCJockeyDAOTest.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
         <option value="$PROJECT_DIR$/res/database.sql" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractJockeyDAOTest.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractRaceResultDAOTest.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/ValidationException.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/Main.java" />
@@ -207,11 +190,13 @@
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCHorseDAOTest.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
       </list>
     </option>
   </component>
@@ -885,7 +870,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426868593111</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Entities sind durch ihre IDs eindeutig. Deswegen sind weitere vergleiche überflüssig.">
+      <created>1426876087110</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1426876087110</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -925,10 +916,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37947884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37947884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28895614" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28895614" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -968,7 +959,8 @@
     <MESSAGE value="Diagramme gelöscht da sie jetzt alle in der Dokumentation vorhanden sind." />
     <MESSAGE value="HorseDAO und die Implementierung davon geändert. War nicht nötig Attribute gegen null zu überprüfen. Tests wurden angepasst." />
     <MESSAGE value="JockeyDAO und die Implementierung davon geändert. War nicht nötig Attribute gegen null zu überprüfen." />
-    <option name="LAST_COMMIT_MESSAGE" value="JockeyDAO und die Implementierung davon geändert. War nicht nötig Attribute gegen null zu überprüfen." />
+    <MESSAGE value="Entities sind durch ihre IDs eindeutig. Deswegen sind weitere vergleiche überflüssig." />
+    <option name="LAST_COMMIT_MESSAGE" value="Entities sind durch ihre IDs eindeutig. Deswegen sind weitere vergleiche überflüssig." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1339,60 +1331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1049" max-vertical-offset="2448">
-          <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="52" max-vertical-offset="850">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="884">
-          <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="111" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#createHorse#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#editHorse#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#deleteHorse#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#searchHorses#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#createJockey#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#editJockey#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#deleteJockey#0;class#Service#0" expanded="false" />
-            <element signature="docComment;method#searchJockeys#0;class#Service#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="853" max-vertical-offset="3264">
-          <caret line="145" column="41" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#createHorse#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#editHorse#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#deleteHorse#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#searchHorses#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#createJockey#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#editJockey#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#deleteJockey#0;class#SimpleService#0" expanded="false" />
-            <element signature="method#searchJockeys#0;class#SimpleService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="784" max-vertical-offset="1190">
@@ -1411,11 +1349,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2352941" vertical-offset="1127" max-vertical-offset="1700">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666">
           <caret line="129" column="57" selection-start-line="129" selection-start-column="57" selection-end-line="129" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2537" max-vertical-offset="3519">
+          <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
           <folding>
-            <element signature="e#1463#1464#0" expanded="true" />
-            <element signature="e#1495#1496#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#createHorse#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#editHorse#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#deleteHorse#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#searchHorses#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#createJockey#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#editJockey#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#deleteJockey#0;class#SimpleService#0" expanded="false" />
+            <element signature="method#searchJockeys#0;class#SimpleService#0" expanded="false" />
+            <element signature="e#5366#5378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="677" max-vertical-offset="1547">
+          <caret line="25" column="84" selection-start-line="25" selection-start-column="84" selection-end-line="25" selection-end-column="84" />
+          <folding>
+            <element signature="method#createRaceResults#0;class#JDBCRaceResultDAO#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1241">
+          <caret line="168" column="43" selection-start-line="168" selection-start-column="43" selection-end-line="168" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#createHorse#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#editHorse#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#deleteHorse#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#searchHorses#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#createJockey#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#deleteJockey#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#searchJockeys#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#addJockeyAndHorseToRace#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#removeJockeyAndHorseFromRace#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#getLastRemovedHorseFromRace#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#getLastRemovedJockeyFromRace#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#startRaceSimulation#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#searchRaceResults#0;class#Service#0" expanded="false" />
+            <element signature="docComment;method#evaluateStatistics#0;class#Service#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7735294" vertical-offset="434" max-vertical-offset="833">
+          <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
