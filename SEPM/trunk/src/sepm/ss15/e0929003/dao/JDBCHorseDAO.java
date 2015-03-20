@@ -20,17 +20,13 @@ public class JDBCHorseDAO implements HorseDAO {
 
     @Override
     public Horse create(Horse horse) throws DAOException {
-        logger.debug("Entering create method and trying to insert into the table Horse:\n{}",horse);
+        logger.debug("Entering create method and trying to insert into the table Horse:\n{}", horse);
         checkIfHorseIsNull(horse);
-        checkIfAttributesAreNull(0,horse.getName(),horse.getAge(),horse.getMinSpeed(),horse.getMaxSpeed(),horse.getPicture(),horse.isDeleted());
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         try {
-            PreparedStatement createStmt = con.prepareStatement("INSERT INTO Horse(name,age,min_speed,max_speed,picture) VALUES (?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement createStmt = con.prepareStatement("INSERT INTO Horse(name,age,min_speed,max_speed,picture) VALUES (?,"+horse.getAge()+","+horse.getMinSpeed()+","+horse.getMaxSpeed()+",?);", Statement.RETURN_GENERATED_KEYS);
             createStmt.setString(1,horse.getName());
-            createStmt.setInt(2,horse.getAge());
-            createStmt.setDouble(3,horse.getMinSpeed());
-            createStmt.setDouble(4,horse.getMaxSpeed());
-            createStmt.setString(5,horse.getPicture());
+            createStmt.setString(2,horse.getPicture());
             createStmt.executeUpdate();
             ResultSet rs = createStmt.getGeneratedKeys();
             rs.next();
@@ -55,26 +51,10 @@ public class JDBCHorseDAO implements HorseDAO {
         logger.debug("Entering search method and trying to filter by age,minSpeed and maxSpeed from\n{}to\n{}",from,to);
         checkIfHorseIsNull(from);
         checkIfHorseIsNull(to);
-        String sql ="SELECT* FROM Horse WHERE is_deleted=false";
-        if(((from.getAge()!=null) == (to.getAge()!=null)) && ((from.getMinSpeed()!=null) == (to.getMinSpeed()!=null)) && ((from.getMaxSpeed()!=null) == (to.getMaxSpeed()!=null))){
-            if(from.getAge()!=null && to.getAge()!=null){
-                sql = sql + " AND age BETWEEN "+ from.getAge() + " AND "+to.getAge() ;
-            }
-            if(from.getMinSpeed()!=null && to.getMinSpeed()!=null){
-                sql = sql + " AND min_speed BETWEEN "+ from.getMinSpeed() + " AND "+to.getMinSpeed() ;
-            }
-            if(from.getMaxSpeed()!=null && to.getMaxSpeed()!=null){
-                sql = sql + " AND max_speed BETWEEN "+ from.getMaxSpeed() + " AND "+to.getMaxSpeed() ;
-            }
-        }
-        else{
-            logger.debug("One or more variables are not initialized.");
-            throw new DAOException("One or more variables are not initialized.");
-        }
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         ArrayList<Horse> list = new ArrayList<Horse>();
         try {
-            ResultSet rs = con.createStatement().executeQuery(sql+";");
+            ResultSet rs = con.createStatement().executeQuery("SELECT* FROM Horse WHERE is_deleted=false AND age BETWEEN " + from.getAge() + " AND " + to.getAge() + " AND min_speed BETWEEN " + from.getMinSpeed() + " AND " + to.getMinSpeed() + " AND max_speed BETWEEN " + from.getMaxSpeed() + " AND " + to.getMaxSpeed() + ";");
             while(rs.next()){
                 list.add(new Horse(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),rs.getDouble(5),rs.getString(6),rs.getBoolean(7)));
             }
@@ -90,22 +70,16 @@ public class JDBCHorseDAO implements HorseDAO {
     public void update(Horse horse) throws DAOException {
         logger.debug("Entering update method with:\n{}",horse);
         checkIfHorseIsNull(horse);
-        checkIfAttributesAreNull(horse.getId(),horse.getName(),horse.getAge(),horse.getMinSpeed(),horse.getMaxSpeed(),horse.getPicture(),horse.isDeleted());
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         try {
-            PreparedStatement updateStmt = con.prepareStatement("UPDATE Horse SET name=?,age=?,min_speed=?,max_speed=?,picture=?,is_deleted=? WHERE id=?;");
+            PreparedStatement updateStmt = con.prepareStatement("UPDATE Horse SET name=?,age="+horse.getAge()+",min_speed="+horse.getMinSpeed()+",max_speed="+horse.getMaxSpeed()+",picture=?,is_deleted="+horse.isDeleted()+" WHERE id="+horse.getId()+";");
             ResultSet rs = con.createStatement().executeQuery("SELECT* FROM Horse WHERE id="+horse.getId()+";");
             if(!rs.next()){
                 logger.debug("Horse with id {} doesn't exist.",horse.getId());
                 throw new DAOException("Horse with id " + horse.getId() + " doesn't exist.");
             }
             updateStmt.setString(1,horse.getName());
-            updateStmt.setInt(2,horse.getAge());
-            updateStmt.setDouble(3,horse.getMinSpeed());
-            updateStmt.setDouble(4,horse.getMaxSpeed());
-            updateStmt.setString(5,horse.getPicture());
-            updateStmt.setBoolean(6,horse.isDeleted());
-            updateStmt.setInt(7,horse.getId());
+            updateStmt.setString(2,horse.getPicture());
             updateStmt.executeUpdate();
             con.commit();
             logger.debug("Successfully updated horse in the table Horse:\n{}",horse);
@@ -124,6 +98,7 @@ public class JDBCHorseDAO implements HorseDAO {
     @Override
     public void delete(Horse horse) throws DAOException {
         logger.debug("Entering delete method with:\n{}",horse);
+        checkIfHorseIsNull(horse);
         horse.setDeleted(true);
         update(horse);
     }
@@ -132,13 +107,6 @@ public class JDBCHorseDAO implements HorseDAO {
         if(horse == null){
             logger.debug("Horse is null.");
             throw new DAOException("Horse can't be null.");
-        }
-    }
-
-    private void checkIfAttributesAreNull(Integer id, String name, Integer age, Double minSpeed, Double maxSpeed, String picture, Boolean isDeleted) throws DAOException {
-        if(id==null || name==null || age==null || minSpeed==null || maxSpeed==null || picture==null || isDeleted==null){
-            logger.debug("One or more variables are not initialized.");
-            throw new DAOException("One or more variables are not initialized.");
         }
     }
 }

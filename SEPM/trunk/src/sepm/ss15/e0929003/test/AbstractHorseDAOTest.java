@@ -17,18 +17,17 @@ public abstract class AbstractHorseDAOTest {
     protected Horse validHorse2;
     protected Horse invalidHorse1;
     protected Horse invalidHorse2;
-    protected Horse invalidHorse3;
 
     protected void setHorseDAO(HorseDAO horseDAO) {
         this.horseDAO = horseDAO;
     }
 
-    protected void setHorses(Horse validHorse1, Horse validHorse2, Horse invalidHorse1, Horse invalidHorse2, Horse invalidHorse3){
+    protected void setHorses(Horse validHorse1, Horse validHorse2, Horse invalidHorse1, Horse invalidHorse2){
         this.validHorse1 = validHorse1;
         this.validHorse2 = validHorse2;
         this.invalidHorse1 = invalidHorse1;
         this.invalidHorse2 = invalidHorse2;
-        this.invalidHorse3 = invalidHorse3;
+
     }
 
     @Test(expected = DAOException.class)
@@ -43,16 +42,16 @@ public abstract class AbstractHorseDAOTest {
 
     @Test
     public void createHorseWithValidParametersShouldPersist() throws DAOException {
-        List<Horse> horses = horseDAO.search(new Horse(),new Horse());
+        List<Horse> horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertFalse(horses.contains(validHorse1));
         Horse h = horseDAO.create(validHorse1);
-        horses = horseDAO.search(new Horse(), new Horse());
+        horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertTrue(horses.contains(h));
     }
 
     @Test(expected = DAOException.class)
-    public void searchWithMinSpeedNullShouldThrowDAOException() throws DAOException {
-        horseDAO.search(validHorse1,invalidHorse3);
+    public void searchWithOneHorseNullNullShouldThrowDAOException() throws DAOException {
+        horseDAO.search(validHorse1,null);
     }
 
     @Test
@@ -72,11 +71,11 @@ public abstract class AbstractHorseDAOTest {
     @Test
     public void updateWithValidIdShouldUpdateHorse() throws DAOException {
         Horse h = horseDAO.create(validHorse1);
-        List<Horse> horses = horseDAO.search(new Horse(), new Horse());
+        List<Horse> horses = horseDAO.search(new Horse(null, null, 1, 50.0, 50.0, null, null), new Horse(null, null, 40, 100.0, 100.0, null, null));
         assertTrue(horses.contains(h));
         h.setAge(2);
         horseDAO.update(h);
-        horses = horseDAO.search(new Horse(), new Horse());
+        horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertTrue(horses.contains(h));
     }
 
@@ -90,10 +89,10 @@ public abstract class AbstractHorseDAOTest {
     @Test
     public void deleteWithValidIdShouldDeleteHorse() throws DAOException{
         Horse h = horseDAO.create(validHorse1);
-        List<Horse> horses = horseDAO.search(new Horse(), new Horse());
+        List<Horse> horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertTrue(horses.contains(h));
         horseDAO.delete(h);
-        horses = horseDAO.search(new Horse(),new Horse());
+        horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertFalse(horses.contains(h));
     }
 }
