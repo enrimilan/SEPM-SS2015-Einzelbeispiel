@@ -14,11 +14,10 @@ public class JDBCHorseDAOTest extends AbstractHorseDAOTest{
     @Before
     public void setUp() throws DAOException, SQLException {
         setHorseDAO(new JDBCHorseDAO());
-        Horse validHorse1 = new Horse(null,"Test Horse 1",19,52.0,75.0,"",false);
-        Horse validHorse2 = new Horse(null,"Test Horse 2",24,70.0,95.0,"",false);
-        Horse invalidHorse1 = new Horse(null,"Test Horse 3",-1,70.0,80.0,"",false);
-        Horse invalidHorse2 = new Horse(-1,"Test Horse 4",29,70.0,80.0,"",false);
-        setHorses(validHorse1,validHorse2,invalidHorse1,invalidHorse2);
+        Horse validHorse = new Horse(null,"Test Horse 1",19,52.0,75.0,"",false);
+        Horse horseWithNegativeAge = new Horse(null,"Test Horse 2",-1,70.0,80.0,"",false);
+        Horse horseWithNegativeId = new Horse(-1,"Test Horse 3",29,70.0,80.0,"",false);
+        setHorses(validHorse,horseWithNegativeAge,horseWithNegativeId);
     }
 
     @After

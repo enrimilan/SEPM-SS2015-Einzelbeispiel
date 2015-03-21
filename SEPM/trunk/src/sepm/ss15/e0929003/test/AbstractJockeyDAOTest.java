@@ -12,22 +12,20 @@ import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractJockeyDAOTest {
 
-    protected JockeyDAO jockeyDAO;
-    protected Jockey validJockey1;
-    protected Jockey validJockey2;
-    protected Jockey invalidJockey1;
-    protected Jockey invalidJockey2;
+    private JockeyDAO jockeyDAO;
+    private Jockey validJockey;
+    private Jockey jockeyWithSkillNull;
+    private Jockey jockeyWithNegativeId;
 
 
     protected void setJockeyDAO(JockeyDAO jockeyDAO) {
         this.jockeyDAO = jockeyDAO;
     }
 
-    protected void setJockeys(Jockey validJockey1, Jockey validJockey2, Jockey invalidJockey1, Jockey invalidJockey2){
-        this.validJockey1 = validJockey1;
-        this.validJockey2 = validJockey2;
-        this.invalidJockey1 = invalidJockey1;
-        this.invalidJockey2 = invalidJockey2;
+    protected void setJockeys(Jockey validJockey, Jockey jockeyWithSkillNull, Jockey jockeyWithNegativeId){
+        this.validJockey = validJockey;
+        this.jockeyWithSkillNull = jockeyWithSkillNull;
+        this.jockeyWithNegativeId = jockeyWithNegativeId;
     }
 
     @Test(expected = DAOException.class)
@@ -38,52 +36,45 @@ public abstract class AbstractJockeyDAOTest {
     @Test
     public void createJockeyWithValidParametersShouldPersist() throws DAOException {
         List<Jockey> jockeys = jockeyDAO.search(new Jockey(),new Jockey());
-        assertFalse(jockeys.contains(validJockey1));
-        Jockey j = jockeyDAO.create(validJockey1);
+        assertFalse(jockeys.contains(validJockey));
+        Jockey j = jockeyDAO.create(validJockey);
         jockeys = jockeyDAO.search(new Jockey(),new Jockey());
         assertTrue(jockeys.contains(j));
     }
 
     @Test(expected = DAOException.class)
     public void searchWithSkillNullShouldThrowDAOException() throws DAOException {
-        jockeyDAO.search(validJockey1,invalidJockey1);
+        jockeyDAO.search(validJockey, jockeyWithSkillNull);
     }
 
     @Test
-    public void searchWithValidParametersShouldReturn4Jockeys() throws DAOException {
-        List<Jockey> jockeys = jockeyDAO.search(validJockey1, validJockey2);
-        assertTrue(jockeys.size() == 4);
-        assertTrue(jockeys.contains(new Jockey(2,"Robby","Albarado","United States",1.0,false)));
-        assertTrue(jockeys.contains(new Jockey(3,"Steve","Cauthen","United States",-2.0,false)));
-        assertTrue(jockeys.contains(new Jockey(9,"Lance","Sullivan","New Zealand",2.0,false)));
-        assertTrue(jockeys.contains(new Jockey(10,"Stephane","Pasquier","France",0.0,false)));
+    public void searchWithValidParametersShouldReturnAllJockeys() throws DAOException {
+        List<Jockey> jockeys = jockeyDAO.search(new Jockey(), new Jockey());
+        assertTrue(jockeys.size() == 8);
     }
 
     @Test(expected = DAOException.class)
     public void updateWithNonExistingIdShouldThrowDAOException() throws DAOException {
-        jockeyDAO.update(invalidJockey2);
+        jockeyDAO.update(jockeyWithNegativeId);
     }
 
     @Test
     public void updateWithValidIdShouldUpdateJockey() throws DAOException {
-        Jockey j = jockeyDAO.create(validJockey1);
+        Jockey j = jockeyDAO.create(validJockey);
         List<Jockey> jockeys = jockeyDAO.search(new Jockey(), new Jockey());
         assertTrue(jockeys.contains(j));
-        j.setCountry("Germany");
+        j.setCountry(j.getCountry()+"dummy");
         jockeyDAO.update(j);
-        jockeys = jockeyDAO.search(new Jockey(), new Jockey());
-        assertTrue(jockeys.contains(j));
     }
 
     @Test(expected = DAOException.class)
     public void deleteWithNonExistingIdShouldThrowDAOException() throws DAOException {
-        invalidJockey2.setDeleted(true);
-        jockeyDAO.delete(invalidJockey2);
+        jockeyDAO.delete(jockeyWithNegativeId);
     }
 
     @Test
     public void deleteWithValidIdShouldDeleteJockey() throws DAOException{
-        Jockey j = jockeyDAO.create(validJockey1);
+        Jockey j = jockeyDAO.create(validJockey);
         List<Jockey> jockeys = jockeyDAO.search(new Jockey(), new Jockey());
         assertTrue(jockeys.contains(j));
         jockeyDAO.delete(j);

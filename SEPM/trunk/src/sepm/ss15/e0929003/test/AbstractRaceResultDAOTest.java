@@ -64,7 +64,7 @@ public abstract class AbstractRaceResultDAOTest {
         list.add(raceResult4);
         list.add(raceResult5);
         raceResultDAO.createRaceResults(list);
-        List<RaceResult> races = raceResultDAO.search(new RaceResult(5, null, null, null, null, null, null, null, null, null));
+        List<RaceResult> races = raceResultDAO.search(new RaceResult(raceResult1.getRaceId(), null, null, null, null, null, null, null, null, null));
         assertTrue(races.contains(raceResult1));
         assertTrue(races.size()==5);
     }
