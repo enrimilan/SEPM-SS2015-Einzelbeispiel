@@ -126,7 +126,24 @@ public class RaceResult {
 
     @Override
     public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        if((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
         RaceResult that = (RaceResult) obj;
-        return that.getRaceId().equals(this.getRaceId());
+        if(this.getRaceId()==null || that.getRaceId()==null || this.getHorseId()==null || that.getHorseId()==null || this.getJockeyId()==null || that.getJockeyId()==null){
+            return false;
+        }
+        return that.getRaceId().equals(this.getRaceId()) && that.getJockeyId().equals(this.getJockeyId()) && that.getHorseId().equals(this.getHorseId());
+    }
+
+    @Override
+    public int hashCode() {
+        if(this.getRaceId()==null || this.getHorseId()==null || this.getJockeyId()==null){
+            return 0;
+        }
+        return raceId*100+horseId*10+jockeyId;
     }
 }
