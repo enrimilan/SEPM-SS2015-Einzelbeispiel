@@ -93,7 +93,24 @@ public class Horse {
 
     @Override
     public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        if((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
         Horse that = (Horse) obj;
+        if(this.getId()==null || that.getId()==null){
+            return false;
+        }
         return that.getId().equals(this.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        if(this.getId()==null){
+            return 0;
+        }
+        return id;
     }
 }
