@@ -85,7 +85,7 @@ public interface Service {
      * @param jockey the jockey to be deleted.
      * @throws ServiceException if:
      *  - jockey is null.
-     *  - at least one of the attributes firstName,lastName,country,skill of the object jockey is null.
+     *  - at least one of the attributes id,firstName,lastName,country,skill of the object jockey is null.
      *  - firstName,lastName or country is invalid.
      *  - id<=0.
      *  - JockeyDAO can't delete the jockey.
@@ -106,6 +106,12 @@ public interface Service {
     public List<Jockey> searchJockeys(Jockey from, Jockey to) throws ServiceException;
 
     /**
+     * Creates a new race.
+     * @throws ServiceException
+     */
+    public void createNewRace() throws ServiceException;
+
+    /**
      * Adds a jockey-horse combination to the list of participants.
      * @param jockey
      * @param horse
@@ -119,11 +125,13 @@ public interface Service {
     /**
      * Removes a jockey-horse combination from the list of participants.
      * @param jockey
+     * @param horse
      * @throws ServiceException if:
-     *  - jockey is null or doesn't exist.
+     *  - jockey or horse is null or it doesn't exist.
+     *  - jockey-horse combination doesn't exist.
      *  - attributes are null or invalid.
      */
-    public void removeJockeyAndHorseFromRace(Jockey jockey) throws ServiceException;
+    public void removeJockeyAndHorseFromRace(Jockey jockey, Horse horse) throws ServiceException;
 
     /**
      * @return last horse which was removed from the list of participants, as a result of calling removeJockeyAndHorseFromRace().
@@ -142,6 +150,7 @@ public interface Service {
      * @return the result of the race, ordered by rank.
      * @throws ServiceException if:
      *  - objects are null.
+     *  - there are no participants.
      *  - RaceResultDAO couldn't create the results.
      */
     public List<RaceResult> startRaceSimulation() throws ServiceException;
