@@ -32,6 +32,7 @@ public class JDBCJockeyDAO implements JockeyDAO {
             ResultSet rs = createStmt.getGeneratedKeys();
             rs.next();
             jockey.setId(rs.getInt(1));
+            jockey.setDeleted(false);
             con.commit();
             logger.debug("Successfully inserted row into the table Jockey:\n{}",jockey);
         } catch (SQLException e) {

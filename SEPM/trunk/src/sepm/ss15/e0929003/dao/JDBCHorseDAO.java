@@ -31,6 +31,7 @@ public class JDBCHorseDAO implements HorseDAO {
             ResultSet rs = createStmt.getGeneratedKeys();
             rs.next();
             horse.setId(rs.getInt(1));
+            horse.setDeleted(false);
             con.commit();
             logger.debug("Successfully inserted row into the table Horse:\n{}",horse);
         } catch (SQLException e) {
