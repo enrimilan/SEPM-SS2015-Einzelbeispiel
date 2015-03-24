@@ -4,9 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sepm.ss15.e0929003.service.Service;
+import sepm.ss15.e0929003.service.ServiceException;
+import sepm.ss15.e0929003.service.SimpleService;
 
 public class Main extends Application {
 
@@ -14,12 +18,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-        primaryStage.setTitle("Wendy’s Rennpferde");
-        primaryStage.setMinHeight(500);
-        primaryStage.setMinWidth(750);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        try{
+            Service service = new SimpleService();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+            Parent root = loader.load();
+            MainViewController controller = loader.getController();
+            controller.setServiceAndControllers(service);
+            controller.fillTablesWithData();
+            controller.setPrimaryStage(primaryStage);
+            primaryStage.setTitle("Wendy’s Rennpferde");
+            primaryStage.setMinHeight(500);
+            primaryStage.setMinWidth(750);
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        }
+        catch (ServiceException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+
+
     }
 
 
