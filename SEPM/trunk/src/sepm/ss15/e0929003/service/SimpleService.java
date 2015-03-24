@@ -35,7 +35,7 @@ public class SimpleService implements Service {
     @Override
     public Horse createHorse(Horse horse) throws ServiceException {
         logger.debug("Entering createHorse method.");
-        if(horse.getId()!=null) horse.setId(1337); //some dummy id to pass the validation.
+        if(horse!=null) horse.setId(1337); //some dummy id to pass the validation.
         validateHorse(horse);
         horse.setId(null);
         try {
