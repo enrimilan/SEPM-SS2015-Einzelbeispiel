@@ -47,7 +47,7 @@ public abstract class AbstractController<T> {
                     @Override
                     public void handle(ActionEvent event) {
                         try {
-                            editOrCreateClicked(resource,mode);
+                            openNewWindow(resource, mode);
                         } catch (IOException e) {}
                     }
                 });
@@ -62,37 +62,29 @@ public abstract class AbstractController<T> {
         });
     }
 
-    public void editOrCreateClicked(String resource, Mode mode) throws IOException {
+    public void openNewWindow(String resource, Mode mode) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+        AnchorPane anchorPane = loader.load();
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(primaryStage);
+        stage.setScene(scene);
         if(resource.equals("HorseEditCreateView.fxml")){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
-            AnchorPane anchorPane = loader.load();
             HorseEditCreateViewController controller = loader.getController();
             controller.setMode(mode);
             controller.setMainViewControllerAndSetup(mainViewController);
-            Scene scene = new Scene(anchorPane);
-            Stage stage = new Stage();
             controller.setStage(stage);
-            stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(primaryStage);
-            stage.setScene(scene);
-            stage.showAndWait();
+
         }
         if(resource.equals("JockeyEditCreateView.fxml")){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
-            AnchorPane anchorPane = loader.load();
             JockeyEditCreateViewController controller = loader.getController();
             controller.setMode(mode);
             controller.setMainViewControllerAndSetup(mainViewController);
-            Scene scene = new Scene(anchorPane);
-            Stage stage = new Stage();
             controller.setStage(stage);
-            stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(primaryStage);
-            stage.setScene(scene);
-            stage.showAndWait();
         }
+        stage.showAndWait();
 
     }
 

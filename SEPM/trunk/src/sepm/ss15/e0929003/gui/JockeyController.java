@@ -2,7 +2,6 @@ package sepm.ss15.e0929003.gui;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.service.ServiceException;
 
@@ -11,13 +10,11 @@ import java.util.Optional;
 
 public class JockeyController extends AbstractController {
 
-    private ImageView horseImageView;
     private TableView<Jockey> jockeysTable;
 
     public JockeyController(MainViewController mainViewController){
         super(mainViewController);
         this.jockeysTable = mainViewController.getJockeysTable();
-        this.horseImageView = mainViewController.getHorseImageView();
         setRowFactory("JockeyEditCreateView.fxml", Mode.EDIT,jockeysTable);
     }
 
