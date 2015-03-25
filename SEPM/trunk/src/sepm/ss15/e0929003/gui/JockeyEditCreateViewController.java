@@ -31,9 +31,13 @@ public class JockeyEditCreateViewController {
         this.jockeysTable = mainViewController.getJockeysTable();
         if(mode==Mode.CREATE){
             this.jockey = new Jockey();
+            stage.setTitle("New jockey");
+            skillTextField.setText(0.0 + "");
+            skillTextField.setDisable(true);
         }
         else if(mode== Mode.EDIT){
             this.jockey = jockeysTable.getSelectionModel().getSelectedItem();
+            stage.setTitle("Edit jockey");
             firstNameTextField.setText(jockey.getFirstName());
             lastNameTextField.setText(jockey.getLastName());
             countryTextField.setText(jockey.getCountry());
