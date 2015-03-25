@@ -74,15 +74,14 @@ public abstract class AbstractController<T> {
         if(resource.equals("HorseEditCreateView.fxml")){
             HorseEditCreateViewController controller = loader.getController();
             controller.setMode(mode);
-            controller.setMainViewControllerAndSetup(mainViewController);
             controller.setStage(stage);
-
+            controller.setMainViewControllerAndSetup(mainViewController);
         }
         if(resource.equals("JockeyEditCreateView.fxml")){
             JockeyEditCreateViewController controller = loader.getController();
             controller.setMode(mode);
-            controller.setMainViewControllerAndSetup(mainViewController);
             controller.setStage(stage);
+            controller.setMainViewControllerAndSetup(mainViewController);
         }
         stage.showAndWait();
 

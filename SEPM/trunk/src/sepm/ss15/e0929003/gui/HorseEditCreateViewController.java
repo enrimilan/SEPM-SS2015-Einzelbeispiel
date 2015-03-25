@@ -34,9 +34,11 @@ public class HorseEditCreateViewController {
         this.horsesTable = mainViewController.getHorseTable();
         if(mode==Mode.CREATE){
             this.horse = new Horse();
+            stage.setTitle("New horse");
         }
         else if(mode== Mode.EDIT){
             this.horse = horsesTable.getSelectionModel().getSelectedItem();
+            stage.setTitle("Edit horse");
             nameTextField.setText(horse.getName());
             ageTextField.setText(horse.getAge()+"");
             minSpeedTextField.setText(horse.getMinSpeed()+"");
