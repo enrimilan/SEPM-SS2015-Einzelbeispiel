@@ -31,7 +31,7 @@ public class HorseEditCreateViewController {
     public void setMainViewControllerAndSetup(MainViewController mainViewController) {
         this.mainViewController = mainViewController;
         this.service = mainViewController.getService();
-        this.horsesTable = mainViewController.getHorsesTable();
+        this.horsesTable = mainViewController.getHorseTable();
         if(mode==Mode.CREATE){
             this.horse = new Horse();
         }

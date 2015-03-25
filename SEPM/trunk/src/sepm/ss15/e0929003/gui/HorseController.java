@@ -24,7 +24,7 @@ public class HorseController extends AbstractController {
 
     public HorseController(MainViewController mainViewController){
         super(mainViewController);
-        this.horsesTable = mainViewController.getHorsesTable();
+        this.horsesTable = mainViewController.getHorseTable();
         this.horseImageView = mainViewController.getHorseImageView();
         horsesTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Horse>() {
             public void changed(ObservableValue<? extends Horse> observable, Horse oldValue, Horse newValue) {
@@ -66,8 +66,8 @@ public class HorseController extends AbstractController {
         Integer fromAge=null,toAge=null;
         Double fromMinSpeed=null,toMinSpeed=null,fromMaxSpeed=null,toMaxSpeed=null;
         if(!fromAgeTextField.getText().isEmpty() && !toAgeTextField.getText().isEmpty()) {
-            fromAge = (int)Math.round(Double.valueOf(fromAgeTextField.getText()));
-            toAge = (int)Math.round(Double.valueOf(toAgeTextField.getText()));
+            fromAge = Integer.valueOf(fromAgeTextField.getText());
+            toAge = Integer.valueOf(toAgeTextField.getText());
         }
         else {
             fromAge = 1;
