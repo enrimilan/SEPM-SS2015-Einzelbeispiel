@@ -10,24 +10,24 @@
         <VBox layoutX="14.0" layoutY="31.0" spacing="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.0">
             <children>
                 <Label layoutX="14.0" layoutY="31.0" text="Name:" />
-                <Label layoutX="14.0" layoutY="54.0" text="Age:" />
-                <Label layoutX="15.0" layoutY="78.0" text="Min speed:" />
-                <Label layoutX="17.0" layoutY="105.0" text="Max speed:" />
+                <Label fx:id="ageLabel" layoutX="14.0" layoutY="54.0" text="Age:" />
+                <Label fx:id="minSpeedLabel" layoutX="15.0" layoutY="78.0" text="Min speed:" />
+                <Label fx:id="maxSpeedLabel" layoutX="17.0" layoutY="105.0" text="Max speed:" />
             <Label layoutX="10.0" layoutY="106.0" text="Picture:" />
             </children>
         </VBox>
         <VBox layoutX="91.0" layoutY="31.0" spacing="5.0" AnchorPane.leftAnchor="91.0" AnchorPane.topAnchor="31.0">
             <children>
                 <TextField fx:id="nameTextField" layoutX="91.0" layoutY="31.0" />
-                <TextField fx:id="ageTextField" layoutX="91.0" layoutY="56.0" />
-                <TextField fx:id="minSpeedTextField" layoutX="91.0" layoutY="81.0" prefHeight="25.0" prefWidth="149.0" />
-                <TextField fx:id="maxSpeedTextField" layoutX="91.0" layoutY="106.0" prefHeight="25.0" prefWidth="72.0" />
+                <TextField fx:id="ageTextField" layoutX="91.0" layoutY="56.0" onKeyReleased="#onTypingInTextFields" />
+                <TextField fx:id="minSpeedTextField" layoutX="91.0" layoutY="81.0" onKeyReleased="#onTypingInTextFields" prefHeight="25.0" prefWidth="149.0" />
+                <TextField fx:id="maxSpeedTextField" layoutX="91.0" layoutY="106.0" onKeyReleased="#onTypingInTextFields" prefHeight="25.0" prefWidth="72.0" />
             <TextField fx:id="pictureTextField" layoutX="10.0" layoutY="100.0" onMousePressed="#onBrowseButtonClicked" prefHeight="25.0" prefWidth="97.0" />
             </children>
         </VBox>
         <HBox layoutX="109.0" layoutY="182.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
             <children>
-                <Button layoutX="109.0" layoutY="182.0" mnemonicParsing="false" onAction="#onOkButtonClicked" prefHeight="25.0" prefWidth="57.0" text="OK">
+                <Button fx:id="okButton" layoutX="109.0" layoutY="182.0" mnemonicParsing="false" onAction="#onOkButtonClicked" prefHeight="25.0" prefWidth="57.0" text="OK">
                     <padding>
                         <Insets left="20.0" right="20.0" />
                     </padding>
