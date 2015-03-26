@@ -23,8 +23,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
             Parent root = loader.load();
             MainViewController controller = loader.getController();
-            controller.setServiceAndInitializeControllers(service);
-            controller.fillTablesWithData();
+            controller.setServicesAndFillTablesWithData(service);
             controller.setPrimaryStage(primaryStage);
             primaryStage.setTitle("Wendy’s Rennpferde");
             primaryStage.setMinHeight(500);
@@ -39,10 +38,7 @@ public class Main extends Application {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
-
     }
-
 
     public static void main(String[] args) {
         launch(args);

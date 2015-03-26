@@ -12,9 +12,9 @@ import sepm.ss15.e0929003.service.ServiceException;
 
 public class JockeyEditCreateViewController {
 
-    private MainViewController mainViewController;
+    private JockeysViewController jockeysViewController;
     private Service service;
-    private TableView<Jockey> jockeysTable;
+    private TableView<Jockey> jockeyTable;
     private Jockey jockey;
     private Mode mode;
     private Stage stage;
@@ -25,10 +25,10 @@ public class JockeyEditCreateViewController {
         this.mode = mode;
     }
 
-    public void setMainViewControllerAndSetup(MainViewController mainViewController) {
-        this.mainViewController = mainViewController;
-        this.service = mainViewController.getService();
-        this.jockeysTable = mainViewController.getJockeysTable();
+    public void setJockeysViewController(JockeysViewController jockeysViewController) {
+        this.jockeysViewController = jockeysViewController;
+        this.service = jockeysViewController.getService();
+        this.jockeyTable = jockeysViewController.getJockeyTable();
         if(mode==Mode.CREATE){
             this.jockey = new Jockey();
             stage.setTitle("New jockey");
@@ -36,7 +36,7 @@ public class JockeyEditCreateViewController {
             skillTextField.setDisable(true);
         }
         else if(mode== Mode.EDIT){
-            this.jockey = jockeysTable.getSelectionModel().getSelectedItem();
+            this.jockey = jockeyTable.getSelectionModel().getSelectedItem();
             stage.setTitle("Edit jockey");
             firstNameTextField.setText(jockey.getFirstName());
             lastNameTextField.setText(jockey.getLastName());
@@ -58,21 +58,21 @@ public class JockeyEditCreateViewController {
         if (mode == Mode.CREATE) {
             try {
                 Jockey j = service.createJockey(jockey);
-                jockeysTable.getItems().add(j);
+                jockeyTable.getItems().add(j);
                 stage.close();
-                mainViewController.showAlertDialog("Create jockey", "", "Jockey created successfully.", Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Create jockey", "", "Jockey created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                mainViewController.showAlertDialog("Create jockey", "Couldn't create new jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Create jockey", "Couldn't create new jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
             }
         } else if (mode == Mode.EDIT) {
             try {
                 service.editJockey(jockey);
-                jockeysTable.getColumns().get(0).setVisible(false);
-                jockeysTable.getColumns().get(0).setVisible(true);
+                jockeyTable.getColumns().get(0).setVisible(false);
+                jockeyTable.getColumns().get(0).setVisible(true);
                 stage.close();
-                mainViewController.showAlertDialog("Edit jockey", "", "Jockey updated successfully.", Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Edit jockey", "", "Jockey updated successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                mainViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
             }
         }
 

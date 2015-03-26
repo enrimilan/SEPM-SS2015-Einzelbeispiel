@@ -15,9 +15,9 @@ import java.io.File;
 
 public class HorseEditCreateViewController {
 
-    private MainViewController mainViewController;
+    private HorsesViewController horsesViewController;
     private Service service;
-    private TableView<Horse> horsesTable;
+    private TableView<Horse> horseTable;
     private Horse horse;
     private Mode mode;
     private Stage stage;
@@ -28,16 +28,16 @@ public class HorseEditCreateViewController {
         this.mode = mode;
     }
 
-    public void setMainViewControllerAndSetup(MainViewController mainViewController) {
-        this.mainViewController = mainViewController;
-        this.service = mainViewController.getService();
-        this.horsesTable = mainViewController.getHorseTable();
+    public void setHorsesViewController(HorsesViewController horsesViewController) {
+        this.horsesViewController = horsesViewController;
+        this.service = horsesViewController.getService();
+        this.horseTable = horsesViewController.getHorseTable();
         if(mode==Mode.CREATE){
             this.horse = new Horse();
             stage.setTitle("New horse");
         }
         else if(mode== Mode.EDIT){
-            this.horse = horsesTable.getSelectionModel().getSelectedItem();
+            this.horse = horseTable.getSelectionModel().getSelectedItem();
             stage.setTitle("Edit horse");
             nameTextField.setText(horse.getName());
             ageTextField.setText(horse.getAge()+"");
@@ -74,21 +74,21 @@ public class HorseEditCreateViewController {
         if (mode == Mode.CREATE) {
             try {
                 Horse h = service.createHorse(horse);
-                horsesTable.getItems().add(h);
+                horseTable.getItems().add(h);
                 stage.close();
-                mainViewController.showAlertDialog("Create horse", "", "Horse created successfully.", Alert.AlertType.INFORMATION);
+                horsesViewController.showAlertDialog("Create horse", "", "Horse created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                mainViewController.showAlertDialog("Create horse", "Couldn't create new horse.", e.getMessage(), Alert.AlertType.INFORMATION);
+                horsesViewController.showAlertDialog("Create horse", "Couldn't create new horse.", e.getMessage(), Alert.AlertType.INFORMATION);
             }
         } else if (mode == Mode.EDIT) {
             try {
                 service.editHorse(horse);
-                horsesTable.getColumns().get(0).setVisible(false);
-                horsesTable.getColumns().get(0).setVisible(true);
+                horseTable.getColumns().get(0).setVisible(false);
+                horseTable.getColumns().get(0).setVisible(true);
                 stage.close();
-                mainViewController.showAlertDialog("Edit jockey", "", "Jockey updated successfully.", Alert.AlertType.INFORMATION);
+                horsesViewController.showAlertDialog("Edit jockey", "", "Jockey updated successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                mainViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
+                horsesViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
             }
         }
     }

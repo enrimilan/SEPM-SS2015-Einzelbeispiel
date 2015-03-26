@@ -2,10 +2,13 @@ package sepm.ss15.e0929003.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import sepm.ss15.e0929003.entities.RaceResult;
 import sepm.ss15.e0929003.service.Service;
@@ -15,25 +18,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatisticsController {
+public class StatisticsViewController extends MainViewController{
 
-    private MainViewController mainViewController;
-    private Service service;
+    @FXML
+    private CheckBox horseIdCheckBoxInStatisticsTab,jockeyIdCheckBoxInStatisticsTab;
+    @FXML
+    private TextField horseIdTextFieldInStatisticsTab,jockeyIdTextFieldInStatisticsTab;
+    @FXML
+    private Button showStatisticsButton;
+    @FXML
     private BarChart chart;
+    @FXML
     private CategoryAxis xAxis;
+    @FXML
     private NumberAxis yAxis;
 
+    public void initialize() {
 
-    public StatisticsController(MainViewController mainViewController, BarChart chart, CategoryAxis xAxis, NumberAxis yAxis) {
-        this.mainViewController = mainViewController;
-        this.service = mainViewController.getService();
-        this.chart = chart;
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
     }
 
-    public void onShowStatisticsClicked(TextField horseIdTextFieldInStatisticsTab,TextField jockeyIdTextFieldInStatisticsTab){
-        try {
+    public void setService(Service service){
+        this.service = service;
+    }
+
+    @FXML
+    public void onStatisticsCheckBoxesSelected(){
+        setDisabled(horseIdTextFieldInStatisticsTab, horseIdCheckBoxInStatisticsTab, horseIdTextFieldInStatisticsTab, horseIdTextFieldInStatisticsTab, horseIdCheckBoxInStatisticsTab, horseIdCheckBoxInStatisticsTab);
+        setDisabled(jockeyIdTextFieldInStatisticsTab, jockeyIdCheckBoxInStatisticsTab, jockeyIdTextFieldInStatisticsTab, jockeyIdTextFieldInStatisticsTab, jockeyIdCheckBoxInStatisticsTab, jockeyIdCheckBoxInStatisticsTab);
+        onTypingInStatisticsTextFields();
+    }
+
+    @FXML
+    public void onTypingInStatisticsTextFields(){
+        boolean ok1 = validateInput(horseIdTextFieldInStatisticsTab,horseIdCheckBoxInStatisticsTab, horseIdTextFieldInStatisticsTab, REGEXTFORINTEGERS);
+        boolean ok2 = validateInput(jockeyIdTextFieldInStatisticsTab,jockeyIdCheckBoxInStatisticsTab, jockeyIdTextFieldInStatisticsTab, REGEXTFORINTEGERS);
+        showStatisticsButton.setDisable(!(ok1&&ok2&&(horseIdCheckBoxInStatisticsTab.isSelected() || jockeyIdCheckBoxInStatisticsTab.isSelected())));
+    }
+
+    @FXML
+    public void onShowStatisticsClicked(){
+       try {
             Integer horseId = null;
             Integer jockeyId = null;
             if(!horseIdTextFieldInStatisticsTab.getText().isEmpty()){
@@ -43,10 +67,10 @@ public class StatisticsController {
                 jockeyId = Integer.valueOf(jockeyIdTextFieldInStatisticsTab.getText());
             }
 
-            HashMap<Integer,Integer> statistics = service.evaluateStatistics(new RaceResult(null,horseId,jockeyId,null,null,null,null,null,null,null));
-            if(statistics.isEmpty()){
+           HashMap<Integer,Integer> statistics = service.evaluateStatistics(new RaceResult(null,horseId,jockeyId,null,null,null,null,null,null,null));
+           if(statistics.isEmpty()){
                 throw new ServiceException("No races for the given IDs found.");
-            }
+           }
             ArrayList<BarChart.Data> list = new ArrayList<BarChart.Data>();
             int maxValue = 0;
             ArrayList<String> categories = new ArrayList<String>();
@@ -63,7 +87,8 @@ public class StatisticsController {
             ObservableList barChartData = FXCollections.observableArrayList(new BarChart.Series( FXCollections.observableArrayList(list)));
             chart.setData(barChartData);
         } catch (ServiceException e) {
-            mainViewController.showAlertDialog("Statistics", "Couldn't show statistics.", e.getMessage(), Alert.AlertType.WARNING);
+            showAlertDialog("Statistics", "Couldn't show statistics.", e.getMessage(), Alert.AlertType.WARNING);
         }
     }
+
 }
