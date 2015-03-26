@@ -4,9 +4,13 @@ import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sepm.ss15.e0929003.service.Service;
@@ -22,6 +26,8 @@ public class MainViewController<T> {
     protected Service service;
     protected Stage primaryStage;
 
+    @FXML
+    private TabPane tabPane;
     @FXML
     private HorsesViewController horsesController;
     @FXML
@@ -59,8 +65,27 @@ public class MainViewController<T> {
     }
 
     @FXML
-    private void onNewRaceClicked(){
-        //TODO
+    private void onNewRaceClicked() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("RaceSimulationView.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setTitle("New race simulation");
+        stage.setResizable(false);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(primaryStage);
+        stage.setScene(scene);
+        RaceSimulationViewController controller = loader.getController();
+        controller.setStage(stage);
+        controller.setRacesViewController(racesController);
+        try {
+            controller.setServiceAndAddAvailableHorsesAndJockeys(service);
+            stage.showAndWait();
+            tabPane.getSelectionModel().select(2);
+        } catch (ServiceException e) {
+            showAlertDialog("Create new race simulation", "", e.getMessage(), Alert.AlertType.WARNING);
+        }
+
     }
 
     @FXML

@@ -33,7 +33,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane layoutX="200.0" layoutY="25.0" prefHeight="475.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TabPane fx:id="tabPane" layoutX="200.0" layoutY="25.0" prefHeight="475.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
               <tabs>
                   <Tab closable="false" text="Horses">
                       <content>
