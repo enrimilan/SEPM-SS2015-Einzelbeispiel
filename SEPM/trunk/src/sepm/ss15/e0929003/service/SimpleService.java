@@ -177,10 +177,15 @@ public class SimpleService implements Service {
             logger.warn("{}-{} do not exist.", jockey, horse);
             throw new ServiceException("Jockey-Horse combination does not exist.");
         }
+        for (Map.Entry<Jockey, Horse> entry : participants.entrySet()) {
+            if (entry.getKey().equals(jockey)) {
+                lastRemovedJockeyFromRace = entry.getKey();
+            }
+        }
+
+        lastRemovedHorseFromRace = participants.get(jockey);
         participants.remove(jockey);
         logger.debug("Successfully removed {}-{} from the list.",jockey,horse);
-        lastRemovedJockeyFromRace = jockey;
-        lastRemovedHorseFromRace = horse;
     }
 
     @Override
@@ -213,10 +218,12 @@ public class SimpleService implements Service {
             raceResult.setHorseId(horse.getId());
             raceResult.setJockeyName(jockey.getFirstName()+" "+jockey.getLastName());
             raceResult.setHorseName(horse.getName());
-            Double jockeySkillCalc = ((Math.atan(jockey.getSkill()))/5) * (0.15/Math.PI);
+            Double jockeySkillCalc = (double)Math.round((1+(((Math.atan(jockey.getSkill()/5.0))) * (0.15/Math.PI)))*100)/100;
             raceResult.setJockeySkillCalc(jockeySkillCalc);
             Double randomSpeed = (double)Math.round((horse.getMinSpeed() + (horse.getMaxSpeed() - horse.getMinSpeed()) * r.nextDouble())*100)/100;
             Double luckFactor = (double)Math.round((0.95 + (1.05 - 0.95) * r.nextDouble())*100)/100;
+            raceResult.setRandomSpeed(randomSpeed);
+            raceResult.setLuckFactor(luckFactor);
             raceResult.setAverageSpeed((double) Math.round(randomSpeed * jockeySkillCalc * luckFactor * 100) / 100);
             raceResults.add(raceResult);
             logger.debug("raceResult prepared: {}" ,raceResult);
