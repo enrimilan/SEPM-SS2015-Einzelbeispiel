@@ -33,7 +33,7 @@ public class RacesViewController extends MainViewController {
         jockeyNameColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("jockeyName"));
         randomSpeedColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("randomSpeed"));
         luckFactorColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("luckFactor"));
-        skillColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("skill"));
+        skillColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("jockeySkillCalc"));
         averageSpeedColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("averageSpeed"));
     }
 
@@ -41,6 +41,12 @@ public class RacesViewController extends MainViewController {
         this.service = service;
         List<RaceResult> list = service.searchRaceResults(new RaceResult());
         raceResultsTable.setItems(FXCollections.observableArrayList(list));
+    }
+
+    public void setRaceId(Integer raceId){
+        raceIdCheckBoxInRacesTab.setSelected(true);
+        raceIdTextFieldInRacesTab.setDisable(false);
+        raceIdTextFieldInRacesTab.setText(raceId+"");
     }
 
     @FXML

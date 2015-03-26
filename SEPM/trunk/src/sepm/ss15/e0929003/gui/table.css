@@ -1,0 +1,19 @@
+/* Selected row when table not focused */
+.table-row-cell:filled:focused:selected {
+    -fx-background-color: #0093ff;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background: -fx-accent;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-table-cell-border-color: lightgray;
+}
+
+.table-view:focused {
+  -fx-background-color: lightgray;
+  -fx-background-insets: 0, 1, 2;
+}
+
+.table-view {
+   -fx-background-color: lightgray;
+  -fx-table-cell-border-color: lightgray;
+  -fx-background-insets: 0, 1, 2;
+}
