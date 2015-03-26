@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sepm.ss15.e0929003.gui.StatisticsViewController">
+   <children>
+      <HBox layoutX="25.0" layoutY="20.0" spacing="10.0">
+         <children>
+            <CheckBox fx:id="horseIdCheckBoxInStatisticsTab" layoutX="160.0" layoutY="24.0" mnemonicParsing="false" onAction="#onStatisticsCheckBoxesSelected" text="Horse ID">
+               <HBox.margin>
+                  <Insets left="20.0" top="5.0" />
+               </HBox.margin>
+            </CheckBox>
+            <TextField fx:id="horseIdTextFieldInStatisticsTab" disable="true" layoutX="246.0" layoutY="20.0" onKeyReleased="#onTypingInStatisticsTextFields" prefHeight="25.0" prefWidth="40.0" promptText="any">
+               <HBox.margin>
+                  <Insets left="-5.0" />
+               </HBox.margin>
+            </TextField>
+            <CheckBox fx:id="jockeyIdCheckBoxInStatisticsTab" layoutX="302.0" layoutY="24.0" mnemonicParsing="false" onAction="#onStatisticsCheckBoxesSelected" text="Jockey ID">
+               <HBox.margin>
+                  <Insets left="20.0" top="5.0" />
+               </HBox.margin>
+            </CheckBox>
+            <TextField fx:id="jockeyIdTextFieldInStatisticsTab" disable="true" layoutX="385.0" layoutY="20.0" onKeyReleased="#onTypingInStatisticsTextFields" prefHeight="25.0" prefWidth="40.0" promptText="any">
+               <HBox.margin>
+                  <Insets left="-5.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="showStatisticsButton" disable="true" layoutX="431.0" layoutY="20.0" mnemonicParsing="false" onAction="#onShowStatisticsClicked" prefHeight="25.0" prefWidth="103.0" text="Show statistics">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <BarChart fx:id="chart" legendVisible="false" prefHeight="446.0" prefWidth="750.0" verticalGridLinesVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+         <xAxis>
+            <CategoryAxis label="rank" fx:id="xAxis" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis" autoRanging="false" label="frequency" minorTickCount="1" side="LEFT" tickUnit="1.0" upperBound="10.0" />
+         </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
