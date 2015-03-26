@@ -1,9 +1,7 @@
 package sepm.ss15.e0929003.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.service.Service;
@@ -20,6 +18,10 @@ public class JockeyEditCreateViewController {
     private Stage stage;
     @FXML
     private TextField firstNameTextField, lastNameTextField, countryTextField, skillTextField;
+    @FXML
+    private Label skillLabel;
+    @FXML
+    private Button okButton;
 
     public void setMode(Mode mode) {
         this.mode = mode;
@@ -43,10 +45,16 @@ public class JockeyEditCreateViewController {
             countryTextField.setText(jockey.getCountry());
             skillTextField.setText(jockey.getSkill() + "");
         }
+        okButton.setDisable(!jockeysViewController.validateInput(skillTextField,skillLabel,null,"^[-]?[0-9]+(\\.[0-9][0-9]?)?$"));
     }
 
     public void setStage(Stage stage){
         this.stage = stage;
+    }
+
+    @FXML
+    public void onTypingInSkillField(){
+        okButton.setDisable(!jockeysViewController.validateInput(skillTextField,skillLabel,null,"^[-]?[0-9]+(\\.[0-9][0-9]?)?$"));
     }
 
     @FXML

@@ -156,7 +156,7 @@ public class MainViewController<T> {
 
 
     protected boolean validateInput(TextField textField, Labeled labeled, Parent parent, String regex){
-        if(parent.isDisabled()){
+        if(parent!=null && parent.isDisabled()){
             return true;
         }
         if(!textField.getText().matches(regex)){

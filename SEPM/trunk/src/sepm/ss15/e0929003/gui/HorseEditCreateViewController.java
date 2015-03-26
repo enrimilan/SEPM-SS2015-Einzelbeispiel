@@ -2,9 +2,7 @@ package sepm.ss15.e0929003.gui;
 
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sepm.ss15.e0929003.entities.Horse;
@@ -23,6 +21,10 @@ public class HorseEditCreateViewController {
     private Stage stage;
     @FXML
     private TextField nameTextField, ageTextField, minSpeedTextField,maxSpeedTextField,pictureTextField;
+    @FXML
+    private Label ageLabel,minSpeedLabel,maxSpeedLabel;
+    @FXML
+    private Button okButton;
 
     public void setMode(Mode mode) {
         this.mode = mode;
@@ -45,10 +47,16 @@ public class HorseEditCreateViewController {
             maxSpeedTextField.setText(horse.getMaxSpeed()+"");
             pictureTextField.setText(horse.getPicture());
         }
+        okButton.setDisable(!inputIsValid());
     }
 
     public void setStage(Stage stage){
         this.stage = stage;
+    }
+
+    @FXML
+    public void onTypingInTextFields(){
+        okButton.setDisable(!inputIsValid());
     }
 
     @FXML
@@ -96,5 +104,12 @@ public class HorseEditCreateViewController {
     @FXML
     public void onCancelButtonClicked(){
         stage.close();
+    }
+
+    private boolean inputIsValid(){
+        boolean ok1 = horsesViewController.validateInput(ageTextField,ageLabel,null,"^[-]?[0-9][0-9]?$");
+        boolean ok2 = horsesViewController.validateInput(minSpeedTextField,minSpeedLabel,null,"^[-]?[0-9]+(\\.[0-9][0-9]?)?$");
+        boolean ok3 = horsesViewController.validateInput(maxSpeedTextField,maxSpeedLabel,null,"^[-]?[0-9]+(\\.[0-9][0-9]?)?$");
+        return ok1 && ok2 && ok3;
     }
 }
