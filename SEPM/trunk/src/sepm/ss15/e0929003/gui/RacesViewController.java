@@ -46,7 +46,10 @@ public class RacesViewController extends MainViewController {
     public void setRaceId(Integer raceId){
         raceIdCheckBoxInRacesTab.setSelected(true);
         raceIdTextFieldInRacesTab.setDisable(false);
-        raceIdTextFieldInRacesTab.setText(raceId+"");
+        raceIdTextFieldInRacesTab.setText(raceId + "");
+        jockeyIdCheckBoxInRacesTab.setSelected(false);
+        horseIdCheckBoxInRacesTab.setSelected(false);
+        onRacesCheckBoxesSelected();
     }
 
     @FXML
