@@ -32,6 +32,7 @@ public class JDBCHorseDAO implements HorseDAO {
             rs.next();
             horse.setId(rs.getInt(1));
             horse.setDeleted(false);
+            update(horse);
             con.commit();
             logger.debug("Successfully inserted row into the table Horse:\n{}",horse);
         } catch (SQLException e) {
@@ -79,10 +80,12 @@ public class JDBCHorseDAO implements HorseDAO {
                 logger.debug("Horse with id {} doesn't exist.",horse.getId());
                 throw new DAOException("Horse with id " + horse.getId() + " doesn't exist.");
             }
+            String picture = "src/res/pictures/"+horse.getId()+"."+horse.getPicture();
             updateStmt.setString(1,horse.getName());
-            updateStmt.setString(2,horse.getPicture());
+            updateStmt.setString(2,picture);
             updateStmt.executeUpdate();
             con.commit();
+            horse.setPicture(picture);
             logger.debug("Successfully updated horse in the table Horse:\n{}",horse);
         } catch (SQLException e) {
             logger.debug(e.getMessage());
