@@ -40,4 +40,9 @@ public interface RaceResultDAO {
      *  - other reasons depending on the chosen DAO implementation.
      */
     public HashMap<Integer,Integer> getStatistics(RaceResult raceResult) throws DAOException;
+
+    /**
+     * Loads test data for the application.
+     */
+    public void loadTestData() throws DAOException;
 }

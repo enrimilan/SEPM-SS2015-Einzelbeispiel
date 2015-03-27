@@ -55,6 +55,22 @@ public class MainViewController<T> {
     }
 
     @FXML
+    public void onLoadTestDataClicked(){
+        Optional<ButtonType> result = showAlertDialog("Load test data", "", "Load test data? Actual data will be lost.", Alert.AlertType.CONFIRMATION);
+        if (result.get() == ButtonType.OK) {
+            try {
+                service.loadTestData();
+                horsesController.setServiceAndFillTableWithData(service);
+                jockeysController.setServiceAndFillTableWithData(service);
+                racesController.setServiceAndFillTableWithData(service);
+                showAlertDialog("Load test data", "", "Data loaded successfully", Alert.AlertType.INFORMATION);
+            } catch (ServiceException e) {
+                showAlertDialog("Load test data", "Couldn't load test data", e.getMessage(), Alert.AlertType.WARNING);
+            }
+        }
+    }
+
+    @FXML
     public void onNewHorseClicked() throws IOException{
         horsesController.openNewWindow(Mode.CREATE);
     }

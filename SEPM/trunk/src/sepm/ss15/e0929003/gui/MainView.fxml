@@ -22,6 +22,7 @@
               <MenuItem mnemonicParsing="false" onAction="#onNewHorseClicked" text="New Horse..." />
                   <MenuItem mnemonicParsing="false" onAction="#onNewJockeyClicked" text="New Jockey..." />
                   <MenuItem mnemonicParsing="false" onAction="#onNewRaceClicked" text="New Race..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onLoadTestDataClicked" text="Load test data" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#onExitClicked" text="Exit" />
             </items>

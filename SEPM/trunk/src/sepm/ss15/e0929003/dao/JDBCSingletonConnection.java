@@ -3,6 +3,7 @@ package sepm.ss15.e0929003.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,8 +18,9 @@ public class JDBCSingletonConnection {
 
     private JDBCSingletonConnection() throws DAOException {
         try {
+            String script = JDBCSingletonConnection.class.getClassLoader().getResource("res/create.sql").getPath().substring(1);
             Class.forName("org.h2.Driver");
-            con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mydb", "sa", "");
+            con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mydb;INIT=RUNSCRIPT FROM '"+script+"'\\;", "sa", "");
             con.setAutoCommit(false);
         } catch (ClassNotFoundException e) {
             logger.debug(e.getMessage());
@@ -74,5 +76,19 @@ public class JDBCSingletonConnection {
         }
         con = JDBCSingletonConnection.getConnection();
         return con;
+    }
+
+    /**
+     * Executes a script in the database.
+     * @param path the path of the script
+     */
+    public static void reset(String path) throws DAOException{
+        try {
+            CallableStatement initCall = con.prepareCall("RUNSCRIPT FROM '" + path + "'");
+            initCall.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage());
+        }
+
     }
 }
