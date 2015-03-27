@@ -70,7 +70,7 @@ public class JockeyEditCreateViewController {
                 stage.close();
                 jockeysViewController.showAlertDialog("Create jockey", "", "Jockey created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                jockeysViewController.showAlertDialog("Create jockey", "Couldn't create new jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Create jockey", "Couldn't create new jockey.", e.getMessage(), Alert.AlertType.WARNING);
             }
         } else if (mode == Mode.EDIT) {
             try {
@@ -80,7 +80,7 @@ public class JockeyEditCreateViewController {
                 stage.close();
                 jockeysViewController.showAlertDialog("Edit jockey", "", "Jockey updated successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
-                jockeysViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.INFORMATION);
+                jockeysViewController.showAlertDialog("Edit jockey", "Couldn't update jockey.", e.getMessage(), Alert.AlertType.WARNING);
             }
         }
 
