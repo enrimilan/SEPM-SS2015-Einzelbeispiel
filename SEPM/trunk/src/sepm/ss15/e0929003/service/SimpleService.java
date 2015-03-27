@@ -54,7 +54,8 @@ public class SimpleService implements Service {
             horse.setPicture(extension);
             Horse createdHorse = horseDAO.create(horse);
             File dest = new File(createdHorse.getPicture());
-            Files.copy(source.toPath(), dest.toPath());
+            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
+            Files.copy(source.toPath(), dest.toPath(),options);
             return createdHorse;
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
@@ -92,13 +93,9 @@ public class SimpleService implements Service {
         logger.debug("Entering deleteHorse method.");
         validateHorse(horse);
         try {
-            String path = horse.getPicture();
-            horse.setPicture("delete");
+            horse.setPicture("deleted");
             horseDAO.delete(horse);
-            Files.delete(new File(path).toPath());
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -302,7 +299,7 @@ public class SimpleService implements Service {
                     raceId = list.get(list.size()-1).getRaceId();
                 }
                 else{
-                    raceId = 1;
+                    raceId = 0;
                 }
                 logger.debug("Last inserted race id is: {}",raceId);
             }
@@ -326,6 +323,23 @@ public class SimpleService implements Service {
         try {
             return raceResultDAO.getStatistics(raceResult);
         } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void loadTestData() throws ServiceException{
+        try {
+            raceResultDAO.loadTestData();
+            for(int i=1; i<11; i++){
+                File source = new File("src/res/pictures/test_pictures/"+i+".jpg");
+                File dest = new File("src/res/pictures/"+i+".jpg");
+                CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
+                Files.copy(source.toPath(), dest.toPath(), options);
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }

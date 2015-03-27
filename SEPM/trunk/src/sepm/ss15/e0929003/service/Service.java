@@ -177,4 +177,8 @@ public interface Service {
     public HashMap<Integer,Integer> evaluateStatistics(RaceResult raceResult) throws ServiceException;
 
 
+    /**
+     * Loads test data for the application.
+     */
+    public void loadTestData() throws ServiceException;
 }

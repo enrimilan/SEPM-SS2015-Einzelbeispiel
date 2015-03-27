@@ -131,6 +131,12 @@ public class JDBCRaceResultDAO implements RaceResultDAO{
         return statistics;
     }
 
+    @Override
+    public void loadTestData() throws DAOException{
+        con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
+        JDBCSingletonConnection.reset(JDBCRaceResultDAO.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+    };
+
     private void checkIfRaceResultIsNull(RaceResult raceResult) throws DAOException {
         if(raceResult == null){
             logger.debug("RaceResult is null.");
