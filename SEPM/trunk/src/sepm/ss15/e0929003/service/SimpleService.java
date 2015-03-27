@@ -7,6 +7,11 @@ import sepm.ss15.e0929003.entities.Horse;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.entities.RaceResult;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class SimpleService implements Service {
@@ -39,8 +44,21 @@ public class SimpleService implements Service {
         validateHorse(horse);
         horse.setId(null);
         try {
-            return horseDAO.create(horse);
+            String path = horse.getPicture();
+            File source = new File(path);
+            int index = source.getName().lastIndexOf('.');
+            String extension ="";
+            if (index >= 0) {
+                extension = source.getName().substring(index+1);
+            }
+            horse.setPicture(extension);
+            Horse createdHorse = horseDAO.create(horse);
+            File dest = new File(createdHorse.getPicture());
+            Files.copy(source.toPath(), dest.toPath());
+            return createdHorse;
         } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -50,8 +68,21 @@ public class SimpleService implements Service {
         logger.debug("Entering editHorse method.");
         validateHorse(horse);
         try {
+            String path = horse.getPicture();
+            File source = new File(path);
+            int index = source.getName().lastIndexOf('.');
+            String extension ="";
+            if (index >= 0) {
+                extension = source.getName().substring(index+1);
+            }
+            File dest = new File("src/res/pictures/"+horse.getId()+"."+extension);
+            horse.setPicture(extension);
+            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
             horseDAO.update(horse);
+            Files.copy(source.toPath(), dest.toPath(),options);
         } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -61,8 +92,13 @@ public class SimpleService implements Service {
         logger.debug("Entering deleteHorse method.");
         validateHorse(horse);
         try {
+            String path = horse.getPicture();
+            horse.setPicture("delete");
             horseDAO.delete(horse);
+            Files.delete(new File(path).toPath());
         } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
