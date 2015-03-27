@@ -331,6 +331,13 @@ public class SimpleService implements Service {
     public void loadTestData() throws ServiceException{
         try {
             raceResultDAO.loadTestData();
+            File folder = new File("src/res/pictures");
+            File[] listOfFiles = folder.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    Files.delete(new File("src/res/pictures/"+listOfFiles[i].getName()).toPath());
+                }
+            }
             for(int i=1; i<11; i++){
                 File source = new File("src/res/pictures/test_pictures/"+i+".jpg");
                 File dest = new File("src/res/pictures/"+i+".jpg");
