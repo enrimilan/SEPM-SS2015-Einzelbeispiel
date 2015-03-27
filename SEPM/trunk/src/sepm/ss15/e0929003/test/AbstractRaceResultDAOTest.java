@@ -86,9 +86,10 @@ public abstract class AbstractRaceResultDAOTest {
     }
 
     @Test
-    public void getStatisticsWithJockeyIdShouldReturnStatisticsWith1Element() throws DAOException {
+    public void getStatisticsWithJockeyIdShouldReturnStatisticsWith2Elements() throws DAOException {
         HashMap<Integer,Integer> statistics = raceResultDAO.getStatistics(new RaceResult(null, null, 1, null, null, null, null, null, null, null));
-        assertTrue(statistics.get(3)==2);
-        assertTrue(statistics.size()==1);
+        assertTrue(statistics.get(2)==1);
+        assertTrue(statistics.get(5)==1);
+        assertTrue(statistics.size()==2);
     }
 }
