@@ -67,6 +67,7 @@ public class JockeyEditCreateViewController {
             try {
                 Jockey j = service.createJockey(jockey);
                 jockeyTable.getItems().add(j);
+                jockeyTable.getSelectionModel().selectLast();
                 stage.close();
                 jockeysViewController.showAlertDialog("Create jockey", "", "Jockey created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {

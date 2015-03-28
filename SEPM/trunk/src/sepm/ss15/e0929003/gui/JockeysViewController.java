@@ -47,6 +47,8 @@ public class JockeysViewController extends MainViewController {
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
         this.service = service;
+        skillCheckBox.setSelected(false);
+        onSkillCheckBoxSelected();
         List<Jockey> list = service.searchJockeys(new Jockey(),new Jockey());
         jockeyTable.setItems(FXCollections.observableArrayList(list));
     }
