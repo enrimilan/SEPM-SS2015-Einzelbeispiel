@@ -44,22 +44,8 @@ public class SimpleService implements Service {
         validateHorse(horse);
         horse.setId(null);
         try {
-            String path = horse.getPicture();
-            File source = new File(path);
-            int index = source.getName().lastIndexOf('.');
-            String extension ="";
-            if (index >= 0) {
-                extension = source.getName().substring(index+1);
-            }
-            horse.setPicture(extension);
-            Horse createdHorse = horseDAO.create(horse);
-            File dest = new File(createdHorse.getPicture());
-            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
-            Files.copy(source.toPath(), dest.toPath(),options);
-            return createdHorse;
+            return horseDAO.create(horse);
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -69,21 +55,8 @@ public class SimpleService implements Service {
         logger.debug("Entering editHorse method.");
         validateHorse(horse);
         try {
-            String path = horse.getPicture();
-            File source = new File(path);
-            int index = source.getName().lastIndexOf('.');
-            String extension ="";
-            if (index >= 0) {
-                extension = source.getName().substring(index+1);
-            }
-            File dest = new File("src/res/pictures/"+horse.getId()+"."+extension);
-            horse.setPicture(extension);
-            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
             horseDAO.update(horse);
-            Files.copy(source.toPath(), dest.toPath(),options);
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -93,7 +66,6 @@ public class SimpleService implements Service {
         logger.debug("Entering deleteHorse method.");
         validateHorse(horse);
         try {
-            horse.setPicture("deleted");
             horseDAO.delete(horse);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
