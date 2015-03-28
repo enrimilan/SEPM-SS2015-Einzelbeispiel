@@ -4,6 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.Horse;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +38,9 @@ public class JDBCHorseDAO implements HorseDAO {
             horse.setId(rs.getInt(1));
             horse.setDeleted(false);
             update(horse);
-            con.commit();
             logger.debug("Successfully inserted row into the table Horse:\n{}",horse);
         } catch (SQLException e) {
             logger.debug(e.getMessage());
-            try {
-                con.rollback();
-            } catch (SQLException e1) {
-                logger.debug(e.getMessage());
-                throw new DAOException(e.getMessage());
-            }
             throw new DAOException(e.getMessage());
         }
         return horse;
@@ -80,14 +78,32 @@ public class JDBCHorseDAO implements HorseDAO {
                 logger.debug("Horse with id {} doesn't exist.",horse.getId());
                 throw new DAOException("Horse with id " + horse.getId() + " doesn't exist.");
             }
-            String picture = "src/res/pictures/"+horse.getId()+"."+horse.getPicture();
+            File source = new File(horse.getPicture());
+            int index = source.getName().lastIndexOf('.');
+            String extension ="";
+            if (index >= 0) {
+                extension = source.getName().substring(index+1);
+            }
+            String picture = "src/res/pictures/"+horse.getId()+"."+extension;
             updateStmt.setString(1,horse.getName());
             updateStmt.setString(2,picture);
             updateStmt.executeUpdate();
+            File dest = new File(picture);
+            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
+            Files.copy(source.toPath(), dest.toPath(), options);
             con.commit();
             horse.setPicture(picture);
             logger.debug("Successfully updated horse in the table Horse:\n{}",horse);
         } catch (SQLException e) {
+            logger.debug(e.getMessage());
+            try {
+                con.rollback();
+            } catch (SQLException e1) {
+                logger.debug(e.getMessage());
+                throw new DAOException(e.getMessage());
+            }
+            throw new DAOException(e.getMessage());
+        } catch (IOException e) {
             logger.debug(e.getMessage());
             try {
                 con.rollback();
