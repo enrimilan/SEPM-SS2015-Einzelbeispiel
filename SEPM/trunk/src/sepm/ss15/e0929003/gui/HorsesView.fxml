@@ -10,7 +10,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sepm.ss15.e0929003.gui.HorsesViewController">
    <children>
-      <TableView fx:id="horseTable" prefHeight="446.0" prefWidth="327.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="horseTable" prefWidth="327.0" stylesheets="@table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="0.0">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
@@ -22,6 +22,19 @@
             <TableColumn fx:id="horseMaxSpeedColumn" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Max speed" />
          </columns>
       </TableView>
+      <VBox layoutX="327.0" prefWidth="104.0" style="-fx-border-color: lightgray;" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="327.0" prefHeight="25.0" prefWidth="104.0" style="-fx-border-color: lightgray; -fx-background-color: -fx-body-color; -fx-border-width: 1px; -fx-border-style: solid;" text="Picture" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ImageView fx:id="horseImageView" fitHeight="117.0" fitWidth="104.0" layoutX="340.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="307.0" AnchorPane.topAnchor="97.0" />
+         </children>
+      </VBox>
       <HBox layoutX="459.0" layoutY="14.0" style="-fx-border-radius: 12px; -fx-border-color: lightgray;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
             <Group>
@@ -62,15 +75,5 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" layoutX="336.0" layoutY="14.0" style="-fx-border-color: lightgray; -fx-border-width: 4px;" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="14.0">
-         <children>
-            <Label layoutX="363.0" text="Picture">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="horseImageView" fitHeight="107.0" fitWidth="103.0" layoutX="333.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="26.0" />
-         </children>
-      </VBox>
    </children>
 </AnchorPane>

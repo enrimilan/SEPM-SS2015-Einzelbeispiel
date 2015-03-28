@@ -39,6 +39,10 @@ public class RacesViewController extends MainViewController {
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
         this.service = service;
+        raceIdCheckBoxInRacesTab.setSelected(false);
+        horseIdCheckBoxInRacesTab.setSelected(false);
+        jockeyIdCheckBoxInRacesTab.setSelected(false);
+        onRacesCheckBoxesSelected();
         List<RaceResult> list = service.searchRaceResults(new RaceResult());
         raceResultsTable.setItems(FXCollections.observableArrayList(list));
     }

@@ -3,6 +3,7 @@ package sepm.ss15.e0929003.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sepm.ss15.e0929003.entities.Horse;
@@ -10,6 +11,7 @@ import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 public class HorseEditCreateViewController {
 
@@ -83,6 +85,7 @@ public class HorseEditCreateViewController {
             try {
                 Horse h = service.createHorse(horse);
                 horseTable.getItems().add(h);
+                horseTable.getSelectionModel().selectLast();
                 stage.close();
                 horsesViewController.showAlertDialog("Create horse", "", "Horse created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
@@ -93,9 +96,14 @@ public class HorseEditCreateViewController {
                 service.editHorse(horse);
                 horseTable.getColumns().get(0).setVisible(false);
                 horseTable.getColumns().get(0).setVisible(true);
+                File file = new File(horse.getPicture());
+                Image value = new Image(file.toURI().toURL().toExternalForm());
+                horsesViewController.getHorseImageView().setImage(value);
                 stage.close();
                 horsesViewController.showAlertDialog("Edit horse", "", "Horse updated successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {
+                horsesViewController.showAlertDialog("Edit horse", "Couldn't update horse.", e.getMessage(), Alert.AlertType.WARNING);
+            } catch (MalformedURLException e) {
                 horsesViewController.showAlertDialog("Edit horse", "Couldn't update horse.", e.getMessage(), Alert.AlertType.WARNING);
             }
         }

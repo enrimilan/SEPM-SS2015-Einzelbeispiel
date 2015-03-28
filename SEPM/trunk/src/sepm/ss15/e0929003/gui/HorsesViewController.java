@@ -71,8 +71,13 @@ public class HorsesViewController extends MainViewController {
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
         this.service = service;
+        ageCheckBox.setSelected(false);
+        minSpeedCheckBox.setSelected(false);
+        maxSpeedCheckBox.setSelected(false);
+        onHorseCheckBoxesSelected();
         List<Horse> list = service.searchHorses(new Horse(null,null,1,50.0,50.0,null,null),new Horse(null,null,40,100.0,100.0,null,null));
         horseTable.setItems(FXCollections.observableArrayList(list));
+        horseTable.getSelectionModel().selectFirst();
     }
 
     public Service getService(){
@@ -85,6 +90,10 @@ public class HorsesViewController extends MainViewController {
 
     public TableView<Horse> getHorseTable() {
         return horseTable;
+    }
+
+    public ImageView getHorseImageView(){
+        return horseImageView;
     }
 
     @FXML
