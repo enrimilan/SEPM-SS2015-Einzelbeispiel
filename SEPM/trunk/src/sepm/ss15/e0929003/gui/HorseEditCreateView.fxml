@@ -22,7 +22,7 @@
                 <TextField fx:id="ageTextField" layoutX="91.0" layoutY="56.0" onKeyReleased="#onTypingInTextFields" />
                 <TextField fx:id="minSpeedTextField" layoutX="91.0" layoutY="81.0" onKeyReleased="#onTypingInTextFields" prefHeight="25.0" prefWidth="149.0" />
                 <TextField fx:id="maxSpeedTextField" layoutX="91.0" layoutY="106.0" onKeyReleased="#onTypingInTextFields" prefHeight="25.0" prefWidth="72.0" />
-            <TextField fx:id="pictureTextField" layoutX="10.0" layoutY="100.0" onMousePressed="#onBrowseButtonClicked" prefHeight="25.0" prefWidth="97.0" />
+            <TextField fx:id="pictureTextField" editable="false" layoutX="10.0" layoutY="100.0" onKeyReleased="#onBrowseButtonClicked" onMousePressed="#onBrowseButtonClicked" prefHeight="25.0" prefWidth="97.0" />
             </children>
         </VBox>
         <HBox layoutX="109.0" layoutY="182.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
