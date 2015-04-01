@@ -1,6 +1,5 @@
 package sepm.ss15.e0929003.test;
 
-import org.junit.After;
 import org.junit.Before;
 import sepm.ss15.e0929003.dao.DAOException;
 import sepm.ss15.e0929003.dao.JDBCJockeyDAO;
@@ -18,11 +17,8 @@ public class JDBCJockeyDAOTest extends AbstractJockeyDAOTest {
         Jockey jockeyWithSkillNull = new Jockey(null,"Test Jockey ","2","Country",null,false);
         Jockey jockeyWithNegativeId = new Jockey(-1,"Test Jockey ","3","Country",-1.0,false);
         setJockeys(validJockey, jockeyWithSkillNull, jockeyWithNegativeId);
-    }
+        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
 
-    @After
-    public void tearDown() throws DAOException, SQLException {
-        JDBCSingletonConnection.getConnection().createStatement().executeUpdate("DELETE FROM Jockey WHERE id>10;");
-        JDBCSingletonConnection.getConnection().commit();
     }
+    
 }
