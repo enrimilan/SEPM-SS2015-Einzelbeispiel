@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/HorseDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/HorseDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" afterPath="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/create.sql" afterPath="$PROJECT_DIR$/src/res/create.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/testdata.sql" afterPath="$PROJECT_DIR$/src/res/testdata.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -76,11 +80,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RaceResultDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
+      <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="81" max-vertical-offset="867">
-              <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2892" max-vertical-offset="3264">
+              <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -89,88 +93,28 @@
       <file leaf-file-name="SimpleService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3938" max-vertical-offset="7276">
-              <caret line="263" column="69" selection-start-line="263" selection-start-column="69" selection-end-line="263" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7497">
+              <caret line="444" column="53" selection-start-line="444" selection-start-column="53" selection-end-line="444" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JDBCHorseDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java">
+      <file leaf-file-name="MainViewController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="2159">
-              <caret line="37" column="38" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1398" max-vertical-offset="3026">
+              <caret line="115" column="93" selection-start-line="115" selection-start-column="93" selection-end-line="115" selection-end-column="93" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractRaceResultDAOTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractRaceResultDAOTest.java">
+      <file leaf-file-name="JDBCSingletonConnection.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1530">
-              <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JDBCRaceResultDAOTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="442">
-              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testdata.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/res/testdata.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="410" max-vertical-offset="833">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="215" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RacesViewController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RacesViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1094" max-vertical-offset="1683">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RaceSimulationViewController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RaceSimulationViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1757" max-vertical-offset="2618">
-              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1713" max-vertical-offset="3145">
-              <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JDBCRaceResultDAO.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.14615385" vertical-offset="567" max-vertical-offset="2686">
-              <caret line="37" column="117" selection-start-line="37" selection-start-column="117" selection-end-line="37" selection-end-column="117" />
+            <state vertical-scroll-proportion="0.5" vertical-offset="655" max-vertical-offset="1581">
+              <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -186,8 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/SimpleServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractServiceTest.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Jockey.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/RaceResult.java" />
@@ -198,7 +140,6 @@
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/Mode.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/HorseEditCreateView.fxml" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/HorseEditCreateView.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RaceResultController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/AbstractController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/test2.fxml" />
@@ -219,24 +160,27 @@
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RaceSimulationViewController.java" />
         <option value="$PROJECT_DIR$/src/res/database.sql" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractRaceResultDAOTest.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/Main.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/JockeysViewController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RacesViewController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/JockeyEditCreateViewController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/HorsesViewController.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/HorseEditCreateViewController.java" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCHorseDAOTest.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCJockeyDAOTest.java" />
         <option value="$PROJECT_DIR$/src/res/testdata.sql" />
         <option value="$PROJECT_DIR$/src/res/create.sql" />
-        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/HorseDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java" />
         <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java" />
+        <option value="$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java" />
       </list>
     </option>
   </component>
@@ -328,10 +272,6 @@
               <option name="myItemId" value="e0929003" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -348,6 +288,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="e0929003" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1076,7 +1020,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427911943216</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Jetzt wird Sequence verwendet um die neue ID des Rennens zu bekommen.">
+      <created>1428685794335</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1428685794335</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1152,7 +1102,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Service-Interface: erstellen der Methoden(mit Javadoc Kommentaren). [2.0 Stunden]" />
     <MESSAGE value="equals und hashCode Methoden richtig überschrieben. Null-checks sind wichtig." />
     <MESSAGE value="Refaktorisierung." />
     <MESSAGE value="Klassendiagramm um SimpleService erweitert.  SimpleService implementiert und Junit Tests erstellt. [9.0 Stunden]" />
@@ -1177,7 +1126,8 @@
     <MESSAGE value="Der User darf nicht den Pfad händisch eingeben, sondern nur über den Filechooser." />
     <MESSAGE value="Verwaltung von Bildern findet jetzt völlig in der DAO-Schicht statt." />
     <MESSAGE value="testdata.sql immer vor jedem JUnit Test ausführen." />
-    <option name="LAST_COMMIT_MESSAGE" value="testdata.sql immer vor jedem JUnit Test ausführen." />
+    <MESSAGE value="Jetzt wird Sequence verwendet um die neue ID des Rennens zu bekommen." />
+    <option name="LAST_COMMIT_MESSAGE" value="Jetzt wird Sequence verwendet um die neue ID des Rennens zu bekommen." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1249,20 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/DAOException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1915493" vertical-offset="0" max-vertical-offset="355">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81849915" vertical-offset="143" max-vertical-offset="867">
-          <caret line="38" column="58" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/entities/Horse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39411765" vertical-offset="1226" max-vertical-offset="1581">
@@ -1316,20 +1252,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/HorseDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44050634" vertical-offset="472" max-vertical-offset="867">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5265823" vertical-offset="319" max-vertical-offset="2125">
-          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/StatisticsView.fxml">
@@ -1420,13 +1342,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/ServiceException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08395062" vertical-offset="0" max-vertical-offset="405">
-          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/HorseEditCreateViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.2117347" vertical-offset="1018" max-vertical-offset="1887">
@@ -1452,20 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6530612" vertical-offset="16" max-vertical-offset="408">
           <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.530541" vertical-offset="1766" max-vertical-offset="2992">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7643979" vertical-offset="1075" max-vertical-offset="1683">
-          <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1517,82 +1418,141 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/res/testdata.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="867">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1713" max-vertical-offset="3145">
-          <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RacesViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1094" max-vertical-offset="1683">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3938" max-vertical-offset="7276">
-          <caret line="263" column="69" selection-start-line="263" selection-start-column="69" selection-end-line="263" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="2159">
-          <caret line="37" column="38" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.8230769" vertical-offset="410" max-vertical-offset="833">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="215" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/test/AbstractRaceResultDAOTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1530">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="465" max-vertical-offset="1530">
           <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/testdata.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="410" max-vertical-offset="833">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="215" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/test/JDBCRaceResultDAOTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="442">
+        <state vertical-scroll-proportion="0.5589744" vertical-offset="3" max-vertical-offset="442">
           <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RacesViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1094" max-vertical-offset="1683">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/ServiceException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.084367245" vertical-offset="0" max-vertical-offset="403">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/DAOException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17662337" vertical-offset="0" max-vertical-offset="385">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="10" selection-end-column="5" />
+          <folding>
+            <element signature="e#106#107#0" expanded="true" />
+            <element signature="e#129#130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/RaceSimulationViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1757" max-vertical-offset="2618">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.85215056" vertical-offset="176" max-vertical-offset="2618">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/HorseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.766129" vertical-offset="548" max-vertical-offset="969">
+          <caret line="51" column="44" selection-start-line="47" selection-start-column="4" selection-end-line="51" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JockeyDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9086022" vertical-offset="495" max-vertical-offset="969">
+          <caret line="51" column="44" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/RaceResultDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9086022" vertical-offset="495" max-vertical-offset="969">
+          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2892" max-vertical-offset="3264">
+          <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCRaceResultDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14615385" vertical-offset="567" max-vertical-offset="2686">
-          <caret line="37" column="117" selection-start-line="37" selection-start-column="117" selection-end-line="37" selection-end-column="117" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2216" max-vertical-offset="2771">
+          <caret line="149" column="5" selection-start-line="146" selection-start-column="4" selection-end-line="149" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCJockeyDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5430108" vertical-offset="1753" max-vertical-offset="2210">
+          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCHorseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9086022" vertical-offset="1651" max-vertical-offset="2244">
+          <caret line="128" column="5" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/service/SimpleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7497">
+          <caret line="444" column="53" selection-start-line="444" selection-start-column="53" selection-end-line="444" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/gui/MainViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1398" max-vertical-offset="3026">
+          <caret line="115" column="93" selection-start-line="115" selection-start-column="93" selection-end-line="115" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sepm/ss15/e0929003/dao/JDBCSingletonConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5" vertical-offset="655" max-vertical-offset="1581">
+          <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
           <folding />
         </state>
       </provider>

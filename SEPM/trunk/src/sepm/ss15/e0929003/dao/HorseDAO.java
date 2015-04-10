@@ -44,4 +44,10 @@ public interface HorseDAO {
      * @throws DAOException if the horse couldn't be deleted. To this, the same reasons as in the update method apply.
      */
     public void delete(Horse horse) throws DAOException;
+
+    /**
+     * Closes this DAO.
+     * @throws DAOException if couldn't close this DAO.
+     */
+    public void close() throws DAOException;
 }
