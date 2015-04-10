@@ -44,4 +44,10 @@ public interface JockeyDAO {
      * @throws DAOException if the jockey couldn't be deleted. To this, the same reasons as in the update method apply.
      */
     public void delete(Jockey jockey) throws DAOException;
+
+    /**
+     * Closes this DAO.
+     * @throws DAOException if couldn't close this DAO.
+     */
+    public void close() throws DAOException;
 }

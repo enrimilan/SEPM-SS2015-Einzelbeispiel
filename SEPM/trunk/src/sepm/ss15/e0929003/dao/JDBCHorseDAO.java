@@ -123,6 +123,11 @@ public class JDBCHorseDAO implements HorseDAO {
         update(horse);
     }
 
+    @Override
+    public void close() throws DAOException{
+        JDBCSingletonConnection.closeConnection();
+    }
+
     private void checkIfHorseIsNull(Horse horse) throws DAOException{
         if(horse == null){
             logger.debug("Horse is null.");

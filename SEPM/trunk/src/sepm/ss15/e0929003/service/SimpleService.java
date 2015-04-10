@@ -434,4 +434,17 @@ public class SimpleService implements Service {
         logger.debug("Jockey validation successful.");
     }
 
+    @Override
+    public void close() throws ServiceException{
+        try{
+            horseDAO.close();
+            jockeyDAO.close();
+            raceResultDAO.close();
+        }
+        catch(DAOException e){
+            throw new ServiceException(e.getMessage());
+        }
+
+    }
+
 }

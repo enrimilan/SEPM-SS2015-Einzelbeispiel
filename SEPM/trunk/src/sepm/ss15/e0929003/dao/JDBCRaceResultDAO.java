@@ -145,6 +145,11 @@ public class JDBCRaceResultDAO implements RaceResultDAO{
     }
 
     @Override
+    public void close() throws DAOException{
+        JDBCSingletonConnection.closeConnection();
+    }
+
+    @Override
     public void loadTestData() throws DAOException{
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
         JDBCSingletonConnection.reset(JDBCRaceResultDAO.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));

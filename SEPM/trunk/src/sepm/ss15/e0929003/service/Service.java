@@ -179,6 +179,13 @@ public interface Service {
 
     /**
      * Loads test data for the application.
+     * @throws ServiceException
      */
     public void loadTestData() throws ServiceException;
+
+    /**
+     * Closes the service.
+     * @throws ServiceException if couldn't close the service.
+     */
+    public void close() throws ServiceException;
 }

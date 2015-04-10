@@ -54,7 +54,7 @@ public class JDBCSingletonConnection {
                 logger.info("Connection to the database closed successfully.");
             } catch (SQLException e) {
                 logger.warn(e.getMessage());
-                throw new DAOException();
+                throw new DAOException(e.getMessage());
             }
         }
     }

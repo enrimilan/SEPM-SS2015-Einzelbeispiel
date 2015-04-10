@@ -116,6 +116,11 @@ public class JDBCJockeyDAO implements JockeyDAO {
         update(jockey);
     }
 
+    @Override
+    public void close() throws DAOException{
+        JDBCSingletonConnection.closeConnection();
+    }
+
     private void checkIfJockeyIsNull(Jockey jockey) throws DAOException{
         if(jockey == null){
             logger.debug("Jockey is null.");

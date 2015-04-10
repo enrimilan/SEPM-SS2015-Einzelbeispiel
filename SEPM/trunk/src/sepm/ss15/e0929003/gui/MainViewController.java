@@ -110,6 +110,11 @@ public class MainViewController<T> {
         if (result.get() == ButtonType.OK) {
             primaryStage.close();
         }
+        try {
+            service.close();
+        } catch (ServiceException e) {
+            showAlertDialog("Exit application", "", e.getMessage(), Alert.AlertType.WARNING);
+        }
     }
 
     @FXML

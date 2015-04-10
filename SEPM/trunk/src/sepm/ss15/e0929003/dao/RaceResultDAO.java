@@ -45,4 +45,10 @@ public interface RaceResultDAO {
      * Loads test data for the application.
      */
     public void loadTestData() throws DAOException;
+
+    /**
+     * Closes this DAO.
+     * @throws DAOException if couldn't close this DAO.
+     */
+    public void close() throws DAOException;
 }
