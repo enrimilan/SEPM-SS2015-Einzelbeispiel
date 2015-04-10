@@ -4,10 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.RaceResult;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,16 +30,22 @@ public class JDBCRaceResultDAO implements RaceResultDAO{
             checkIfRaceResultIsNull(raceResult);
         }
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
+        Integer id = null;
         try {
-            for(RaceResult raceResult: raceResults) {
+            for(int i = 0; i<raceResults.size();i++) {
+                RaceResult raceResult = raceResults.get(i);
                 logger.debug("Trying to insert row into the table RaceResult: {}", raceResult.toString().trim());
-                ResultSet rs = con.createStatement().executeQuery("SELECT count(*) FROM RaceResult WHERE race_id="+raceResult.getRaceId()+" AND (horse_id="+raceResult.getHorseId()+" OR jockey_id="+raceResult.getJockeyId()+");");
+                ResultSet rs = con.createStatement().executeQuery("SELECT count(*) FROM RaceResult WHERE race_id="+id+" AND (horse_id="+raceResult.getHorseId()+" OR jockey_id="+raceResult.getJockeyId()+");");
                 rs.next();
                 if(rs.getInt(1)>0){
                     logger.debug("Race result with id {} and horse id {} / jockey id {} already exists.", raceResult.getRaceId(), raceResult.getHorseId(), raceResult.getJockeyId());
                     throw new DAOException("Horse or jockey already participates in this race.");
                 }
-                Integer raceId = raceResult.getRaceId();
+                String raceId = "race_id_seq.CURRVAL";
+                if(i==0){
+                    raceId = "race_id_seq.NEXTVAL";
+                }
+
                 Integer horseId = raceResult.getHorseId();
                 Integer jockeyId = raceResult.getJockeyId();
                 Double randomSpeed = raceResult.getRandomSpeed();
@@ -50,10 +53,20 @@ public class JDBCRaceResultDAO implements RaceResultDAO{
                 Double jockeySkillCalc = raceResult.getJockeySkillCalc();
                 Double averageSpeed = raceResult.getAverageSpeed();
                 Integer rank = raceResult.getRank();
-                PreparedStatement createStmt = con.prepareStatement("INSERT INTO RaceResult(race_id,horse_id,jockey_id,horse_name,jockey_name,random_speed,luck_factor,jockey_skill_calc,average_speed,rank) VALUES ("+raceId+","+horseId+","+jockeyId+",?,?,"+randomSpeed+","+luckFactor+","+jockeySkillCalc+","+averageSpeed+","+rank+");");
+                PreparedStatement createStmt = con.prepareStatement("INSERT INTO RaceResult(race_id,horse_id,jockey_id,horse_name,jockey_name,random_speed,luck_factor,jockey_skill_calc,average_speed,rank) VALUES ("+raceId+","+horseId+","+jockeyId+",?,?,"+randomSpeed+","+luckFactor+","+jockeySkillCalc+","+averageSpeed+","+rank+");", Statement.RETURN_GENERATED_KEYS);
                 createStmt.setString(1, raceResult.getHorseName());
                 createStmt.setString(2, raceResult.getJockeyName());
                 createStmt.executeUpdate();
+                if(i==0){
+                    ResultSet rs1 = createStmt.getGeneratedKeys();
+                    rs1.next();
+                    id = rs1.getInt(1);
+                    raceResult.setRaceId(id);
+                }
+                else{
+                    raceResult.setRaceId(id);
+                }
+
                 logger.debug("Successfully added to transaction: {}", raceResult.toString().trim());
             }
             con.commit();

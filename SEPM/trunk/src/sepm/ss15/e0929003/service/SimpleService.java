@@ -20,7 +20,6 @@ public class SimpleService implements Service {
     private HorseDAO horseDAO;
     private JockeyDAO jockeyDAO;
     private RaceResultDAO raceResultDAO;
-    private Integer raceId;
     private HashMap<Jockey,Horse> participants;
     private Jockey lastRemovedJockeyFromRace;
     private Horse lastRemovedHorseFromRace;
@@ -151,8 +150,6 @@ public class SimpleService implements Service {
     @Override
     public void createNewRace() throws ServiceException{
         participants.clear();
-        raceId++;
-        logger.debug("New id {} for new race.",raceId);
     }
 
     @Override
@@ -218,7 +215,6 @@ public class SimpleService implements Service {
             validateJockey(jockey);
             validateHorse(horse);
             RaceResult raceResult = new RaceResult();
-            raceResult.setRaceId(raceId);
             raceResult.setJockeyId(jockey.getId());
             raceResult.setHorseId(horse.getId());
             raceResult.setJockeyName(jockey.getFirstName()+" "+jockey.getLastName());
@@ -266,15 +262,6 @@ public class SimpleService implements Service {
         }
         try {
             List<RaceResult> list = raceResultDAO.search(raceResult);
-            if(raceId==null){
-                if(!list.isEmpty()){
-                    raceId = list.get(list.size()-1).getRaceId();
-                }
-                else{
-                    raceId = 0;
-                }
-                logger.debug("Last inserted race id is: {}",raceId);
-            }
             return list;
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
