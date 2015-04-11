@@ -89,8 +89,13 @@ public class JockeysViewController extends MainViewController {
                 list = service.searchJockeys(new Jockey(),new Jockey());
             }
             jockeyTable.setItems(FXCollections.observableArrayList(list));
+            jockeyTable.getSelectionModel().selectFirst();
             jockeyTable.getColumns().get(0).setVisible(false);
             jockeyTable.getColumns().get(0).setVisible(true);
+            if(list.isEmpty()){
+                showAlertDialog("Search jockeys", "", "No jockeys found", Alert.AlertType.INFORMATION);
+            }
+
         } catch (ServiceException e) {
             showAlertDialog("Search jockeys", "Search failed", e.getMessage(), Alert.AlertType.WARNING);
         }

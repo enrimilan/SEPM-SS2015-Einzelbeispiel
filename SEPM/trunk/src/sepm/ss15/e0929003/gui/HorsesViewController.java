@@ -145,8 +145,12 @@ public class HorsesViewController extends MainViewController {
         try {
             list = service.searchHorses(new Horse(null,null,fromAge,fromMinSpeed,fromMaxSpeed,null,null),new Horse(null,null,toAge,toMinSpeed,toMaxSpeed,null,null));
             horseTable.setItems(FXCollections.observableArrayList(list));
+            horseTable.getSelectionModel().selectFirst();
             horseTable.getColumns().get(0).setVisible(false);
             horseTable.getColumns().get(0).setVisible(true);
+            if(list.isEmpty()){
+                showAlertDialog("Search horses", "", "No horses found", Alert.AlertType.INFORMATION);
+            }
         } catch (ServiceException e) {
             showAlertDialog("Search horses", "Search failed", e.getMessage(), Alert.AlertType.WARNING);
         }
