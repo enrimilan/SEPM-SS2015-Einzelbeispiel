@@ -91,6 +91,9 @@ public class RacesViewController extends MainViewController {
             raceResultsTable.setItems(FXCollections.observableArrayList(list));
             raceResultsTable.getColumns().get(0).setVisible(false);
             raceResultsTable.getColumns().get(0).setVisible(true);
+            if(list.isEmpty()){
+                showAlertDialog("Search race results", "", "No race results found", Alert.AlertType.INFORMATION);
+            }
         }
         catch (ServiceException e) {
             showAlertDialog("Search race results", "Search failed", e.getMessage(), Alert.AlertType.WARNING);
