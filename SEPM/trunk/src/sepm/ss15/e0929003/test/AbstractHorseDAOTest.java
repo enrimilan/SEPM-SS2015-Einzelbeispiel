@@ -7,6 +7,7 @@ import sepm.ss15.e0929003.entities.Horse;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -28,7 +29,7 @@ public abstract class AbstractHorseDAOTest {
     }
 
     @Test(expected = DAOException.class)
-    public void createWithNullShouldThrowDAOException() throws DAOException {
+    public void createHorseWithNullShouldThrowDAOException() throws DAOException {
         horseDAO.create(null);
     }
 
@@ -44,6 +45,7 @@ public abstract class AbstractHorseDAOTest {
         Horse h = horseDAO.create(validHorse);
         horses = horseDAO.search(new Horse(null,null,1,50.0,50.0,null,null), new Horse(null,null,40,100.0,100.0,null,null));
         assertTrue(horses.contains(h));
+        horseDAO.delete(h);
     }
 
     @Test(expected = DAOException.class)
@@ -54,7 +56,7 @@ public abstract class AbstractHorseDAOTest {
     @Test
     public void searchWithValidParametersShouldReturnAllHorses() throws DAOException {
         List<Horse> horses = horseDAO.search(new Horse(null, null, 1, 50.0, 50.0, null, null), new Horse(null, null, 40, 100.0, 100.0, null, null));
-        assertTrue(horses.size() == 8);
+        assertEquals(horses.size(),8);
     }
 
     @Test(expected = DAOException.class)

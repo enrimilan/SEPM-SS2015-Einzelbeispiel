@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractRaceResultDAOTest {
@@ -66,7 +67,7 @@ public abstract class AbstractRaceResultDAOTest {
         raceResultDAO.createRaceResults(list);
         List<RaceResult> races = raceResultDAO.search(new RaceResult(raceResult1.getRaceId(), null, null, null, null, null, null, null, null, null));
         assertTrue(races.contains(raceResult1));
-        assertTrue(races.size()==5);
+        assertEquals(races.size(),5);
     }
 
     @Test(expected = DAOException.class)
@@ -77,7 +78,7 @@ public abstract class AbstractRaceResultDAOTest {
     @Test
     public void searchWithRaceResultNotNullShouldReturnFilteredListOfRaceResultsWith2Elements() throws DAOException {
         List<RaceResult> races = raceResultDAO.search(new RaceResult(null, null, 1, null, null, null, null, null, null, null));
-        assertTrue(races.size()==2);
+        assertEquals(races.size(),2);
     }
 
     @Test(expected = DAOException.class)
@@ -90,6 +91,6 @@ public abstract class AbstractRaceResultDAOTest {
         HashMap<Integer,Integer> statistics = raceResultDAO.getStatistics(new RaceResult(null, null, 1, null, null, null, null, null, null, null));
         assertTrue(statistics.get(2)==1);
         assertTrue(statistics.get(5)==1);
-        assertTrue(statistics.size()==2);
+        assertEquals(statistics.size(),2);
     }
 }

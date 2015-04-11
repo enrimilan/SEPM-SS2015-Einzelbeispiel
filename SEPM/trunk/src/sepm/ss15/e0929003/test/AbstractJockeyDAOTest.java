@@ -7,6 +7,7 @@ import sepm.ss15.e0929003.entities.Jockey;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -29,7 +30,7 @@ public abstract class AbstractJockeyDAOTest {
     }
 
     @Test(expected = DAOException.class)
-    public void createWithNullShouldThrowDAOException() throws DAOException {
+    public void createJockeyWithNullShouldThrowDAOException() throws DAOException {
         jockeyDAO.create(null);
     }
 
@@ -40,6 +41,7 @@ public abstract class AbstractJockeyDAOTest {
         Jockey j = jockeyDAO.create(validJockey);
         jockeys = jockeyDAO.search(new Jockey(),new Jockey());
         assertTrue(jockeys.contains(j));
+        jockeyDAO.delete(j);
     }
 
     @Test(expected = DAOException.class)
@@ -50,7 +52,7 @@ public abstract class AbstractJockeyDAOTest {
     @Test
     public void searchWithValidParametersShouldReturnAllJockeys() throws DAOException {
         List<Jockey> jockeys = jockeyDAO.search(new Jockey(), new Jockey());
-        assertTrue(jockeys.size() == 8);
+        assertEquals(jockeys.size(), 8);
     }
 
     @Test(expected = DAOException.class)
