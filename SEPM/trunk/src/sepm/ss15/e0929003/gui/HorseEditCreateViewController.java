@@ -91,8 +91,12 @@ public class HorseEditCreateViewController {
         if (mode == Mode.CREATE) {
             try {
                 Horse h = service.createHorse(horse);
-                horseTable.getItems().add(h);
-                horseTable.getSelectionModel().selectLast();
+                if(horsesViewController.getFromAge()<=h.getAge() && horsesViewController.getToAge() >=h.getAge()
+                        && horsesViewController.getFromMinSpeed()<=h.getMinSpeed() && horsesViewController.getToMinSpeed() >=h.getMinSpeed()
+                        && horsesViewController.getFromMaxSpeed()<=h.getMaxSpeed() && horsesViewController.getToMaxSpeed()>=h.getMaxSpeed()){
+                    horseTable.getItems().add(h);
+                    horseTable.getSelectionModel().selectLast();
+                }
                 stage.close();
                 horsesViewController.showAlertDialog("Create horse", "", "Horse created successfully.", Alert.AlertType.INFORMATION);
             } catch (ServiceException e) {

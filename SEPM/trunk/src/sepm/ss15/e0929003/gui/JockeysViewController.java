@@ -24,6 +24,7 @@ import java.util.Optional;
 public class JockeysViewController extends MainViewController {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
+    private Double fromSkill, toSkill;
 
     @FXML
     private TableView<Jockey> jockeyTable;
@@ -70,6 +71,15 @@ public class JockeysViewController extends MainViewController {
         return jockeyTable;
     }
 
+
+    public Double getFromSkill() {
+        return fromSkill;
+    }
+
+    public Double getToSkill() {
+        return toSkill;
+    }
+
     @FXML
     public void onSkillCheckBoxSelected(){
         logger.info("User selected/unselected checkbox 'Skill'");
@@ -90,9 +100,13 @@ public class JockeysViewController extends MainViewController {
         List<Jockey> list = null;
         try {
             if(skillCheckBox.isSelected()){
-                list = service.searchJockeys(new Jockey(null,null,null,null,Double.valueOf(fromSkillTextField.getText()),null),new Jockey(null,null,null,null,Double.valueOf(toSkillTextField.getText()),null));
+                fromSkill = Double.valueOf(fromSkillTextField.getText());
+                toSkill = Double.valueOf(toSkillTextField.getText());
+                list = service.searchJockeys(new Jockey(null,null,null,null,fromSkill,null),new Jockey(null,null,null,null,toSkill,null));
             }
             else{
+                fromSkill = null;
+                toSkill = null;
                 list = service.searchJockeys(new Jockey(),new Jockey());
             }
             jockeyTable.setItems(FXCollections.observableArrayList(list));

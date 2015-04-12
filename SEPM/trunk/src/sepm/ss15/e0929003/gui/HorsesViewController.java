@@ -29,6 +29,8 @@ import java.util.Optional;
 public class HorsesViewController extends MainViewController {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
+    private Integer fromAge=1,toAge=40;
+    private Double fromMinSpeed=50.0,toMinSpeed=100.0,fromMaxSpeed=50.0,toMaxSpeed=100.0;
 
     @FXML
     private TableView<Horse> horseTable;
@@ -39,7 +41,18 @@ public class HorsesViewController extends MainViewController {
     @FXML
     private HBox ageHBox,minSpeedHBox,maxSpeedHBox;
     @FXML
-    private TextField fromAgeTextField,toAgeTextField,fromMinSpeedTextField,toMinSpeedTextField,fromMaxSpeedTextField,toMaxSpeedTextField;
+    private TextField fromAgeTextField;
+    @FXML
+    private TextField toAgeTextField;
+    @FXML
+    private TextField fromMinSpeedTextField;
+    @FXML
+    private TextField toMinSpeedTextField;
+    @FXML
+    private TextField fromMaxSpeedTextField;
+
+    @FXML
+    private TextField toMaxSpeedTextField;
     @FXML
     private Label fromAgeLabel,toAgeLabel,fromMinSpeedLabel,toMinSpeedLabel,fromMaxSpeedLabel,toMaxSpeedLabel;
     @FXML
@@ -102,6 +115,31 @@ public class HorsesViewController extends MainViewController {
         return horseImageView;
     }
 
+
+    public Integer getFromAge() {
+        return fromAge;
+    }
+
+    public Integer getToAge() {
+        return toAge;
+    }
+
+    public Double getFromMinSpeed() {
+        return fromMinSpeed;
+    }
+
+    public Double getToMinSpeed() {
+        return toMinSpeed;
+    }
+
+    public Double getFromMaxSpeed() {
+        return fromMaxSpeed;
+    }
+
+    public Double getToMaxSpeed() {
+        return toMaxSpeed;
+    }
+
     @FXML
     public void onHorseCheckBoxesSelected(){
         logger.info("User selected/unselected checkbox");
@@ -124,8 +162,6 @@ public class HorsesViewController extends MainViewController {
     public void onHorseSearchButtonClicked(){
         logger.info("User clicked 'Search'");
         List<Horse> list = null;
-        Integer fromAge=null,toAge=null;
-        Double fromMinSpeed=null,toMinSpeed=null,fromMaxSpeed=null,toMaxSpeed=null;
         if(!fromAgeTextField.getText().isEmpty() && !toAgeTextField.getText().isEmpty()) {
             fromAge = Integer.valueOf(fromAgeTextField.getText());
             toAge = Integer.valueOf(toAgeTextField.getText());
