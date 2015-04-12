@@ -20,12 +20,12 @@ public class JDBCRaceResultDAOTest extends AbstractRaceResultDAOTest {
         RaceResult raceResult4 = new RaceResult(null,4,4,"Trixie","Patricia Cooksey",80.0,0.97,2.85,221.16,3);
         RaceResult raceResult5 = new RaceResult(null,5,5,"Dark Sparks","Alan Garcia",90.0,1.02,3.15,289.17,1);
         setRaceResults(raceResult1, raceResult2, raceResult3, raceResult4, raceResult5);
-        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath());
     }
 
     @AfterClass
     public static void resetAfter() throws DAOException {
-        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath());
     }
 
 }

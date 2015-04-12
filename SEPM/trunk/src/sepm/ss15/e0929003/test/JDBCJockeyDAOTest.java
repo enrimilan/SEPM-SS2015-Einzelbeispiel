@@ -15,7 +15,7 @@ public class JDBCJockeyDAOTest extends AbstractJockeyDAOTest {
     @BeforeClass
     public static void resetBefore() throws DAOException {
         JDBCSingletonConnection.getConnection();
-        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath());
     }
 
     @Before
@@ -29,6 +29,6 @@ public class JDBCJockeyDAOTest extends AbstractJockeyDAOTest {
 
     @AfterClass
     public static void resetAfter() throws DAOException {
-        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        JDBCSingletonConnection.reset(JDBCJockeyDAOTest.class.getClassLoader().getResource("res/testdata.sql").getPath());
     }
 }
