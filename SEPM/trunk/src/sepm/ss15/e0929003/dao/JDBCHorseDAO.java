@@ -124,6 +124,30 @@ public class JDBCHorseDAO implements HorseDAO {
     }
 
     @Override
+    public void loadTestData() throws DAOException{
+        con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
+        JDBCSingletonConnection.reset(JDBCRaceResultDAO.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        try {
+        File folder = new File("src/res/pictures");
+        File[] listOfFiles = folder.listFiles();
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                Files.delete(new File("src/res/pictures/"+listOfFiles[i].getName()).toPath());
+            }
+        }
+        for(int i=1; i<11; i++){
+            File source = new File("src/res/pictures/test_pictures/"+i+".jpg");
+            File dest = new File("src/res/pictures/"+i+".jpg");
+            CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
+            Files.copy(source.toPath(), dest.toPath(), options);
+        }
+        } catch (IOException e) {
+            logger.debug(e.getMessage());
+            throw new DAOException(e.getMessage());
+        }
+    }
+
+    @Override
     public void close() throws DAOException{
         JDBCSingletonConnection.closeConnection();
     }

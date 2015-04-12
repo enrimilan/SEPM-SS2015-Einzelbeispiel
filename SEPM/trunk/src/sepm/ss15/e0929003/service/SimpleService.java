@@ -7,11 +7,6 @@ import sepm.ss15.e0929003.entities.Horse;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.entities.RaceResult;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 public class SimpleService implements Service {
@@ -289,23 +284,8 @@ public class SimpleService implements Service {
     @Override
     public void loadTestData() throws ServiceException{
         try {
-            raceResultDAO.loadTestData();
-            File folder = new File("src/res/pictures");
-            File[] listOfFiles = folder.listFiles();
-            for (int i = 0; i < listOfFiles.length; i++) {
-                if (listOfFiles[i].isFile()) {
-                    Files.delete(new File("src/res/pictures/"+listOfFiles[i].getName()).toPath());
-                }
-            }
-            for(int i=1; i<11; i++){
-                File source = new File("src/res/pictures/test_pictures/"+i+".jpg");
-                File dest = new File("src/res/pictures/"+i+".jpg");
-                CopyOption[] options = new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
-                Files.copy(source.toPath(), dest.toPath(), options);
-            }
+            horseDAO.loadTestData();
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
     }

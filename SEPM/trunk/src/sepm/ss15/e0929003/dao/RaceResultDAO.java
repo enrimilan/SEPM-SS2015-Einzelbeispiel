@@ -42,11 +42,6 @@ public interface RaceResultDAO {
     public HashMap<Integer,Integer> getStatistics(RaceResult raceResult) throws DAOException;
 
     /**
-     * Loads test data for the application.
-     */
-    public void loadTestData() throws DAOException;
-
-    /**
      * Closes this DAO.
      * @throws DAOException if couldn't close this DAO.
      */
