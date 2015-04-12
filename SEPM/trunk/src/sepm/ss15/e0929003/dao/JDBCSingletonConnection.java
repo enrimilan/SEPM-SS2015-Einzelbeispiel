@@ -18,7 +18,10 @@ public class JDBCSingletonConnection {
 
     private JDBCSingletonConnection() throws DAOException {
         try {
-            String script = JDBCSingletonConnection.class.getClassLoader().getResource("res/create.sql").getPath().substring(1);
+            String script = JDBCSingletonConnection.class.getClassLoader().getResource("res/create.sql").getPath();
+            if(System.getProperty("os.name").startsWith("Windows")){
+                script = script.substring(1);
+            }
             Class.forName("org.h2.Driver");
             con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/mydb;INIT=RUNSCRIPT FROM '"+script+"'\\;", "sa", "");
             con.setAutoCommit(false);
@@ -84,6 +87,9 @@ public class JDBCSingletonConnection {
      */
     public static void reset(String path) throws DAOException{
         try {
+            if(System.getProperty("os.name").startsWith("Windows")){
+                path = path.substring(1);
+            }
             CallableStatement initCall = con.prepareCall("RUNSCRIPT FROM '" + path + "'");
             initCall.execute();
         } catch (SQLException e) {
@@ -91,4 +97,6 @@ public class JDBCSingletonConnection {
         }
 
     }
+
+
 }
