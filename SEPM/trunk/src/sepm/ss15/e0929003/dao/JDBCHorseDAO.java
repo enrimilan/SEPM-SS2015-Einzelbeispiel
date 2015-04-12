@@ -126,7 +126,7 @@ public class JDBCHorseDAO implements HorseDAO {
     @Override
     public void loadTestData() throws DAOException{
         con = JDBCSingletonConnection.reconnectIfConnectionToDatabaseLost();
-        JDBCSingletonConnection.reset(JDBCRaceResultDAO.class.getClassLoader().getResource("res/testdata.sql").getPath().substring(1));
+        JDBCSingletonConnection.reset(JDBCRaceResultDAO.class.getClassLoader().getResource("res/testdata.sql").getPath());
         try {
         File folder = new File("src/res/pictures");
         File[] listOfFiles = folder.listFiles();
