@@ -30,8 +30,10 @@ public class Main extends Application {
             primaryStage.setMinWidth(750);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
+            logger.info("Application started.");
         }
         catch (ServiceException e){
+            logger.info(e.getMessage());
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("");

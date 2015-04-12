@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.RaceResult;
 import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
@@ -19,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StatisticsViewController extends MainViewController{
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private CheckBox horseIdCheckBoxInStatisticsTab,jockeyIdCheckBoxInStatisticsTab;
@@ -34,7 +38,7 @@ public class StatisticsViewController extends MainViewController{
     private NumberAxis yAxis;
 
     public void initialize() {
-
+        logger.debug("Initialized.");
     }
 
     public void setService(Service service){
@@ -43,6 +47,7 @@ public class StatisticsViewController extends MainViewController{
 
     @FXML
     public void onStatisticsCheckBoxesSelected(){
+        logger.info("User selected/unselected checkbox");
         setDisabled(horseIdTextFieldInStatisticsTab, horseIdCheckBoxInStatisticsTab, horseIdTextFieldInStatisticsTab, horseIdTextFieldInStatisticsTab, horseIdCheckBoxInStatisticsTab, horseIdCheckBoxInStatisticsTab);
         setDisabled(jockeyIdTextFieldInStatisticsTab, jockeyIdCheckBoxInStatisticsTab, jockeyIdTextFieldInStatisticsTab, jockeyIdTextFieldInStatisticsTab, jockeyIdCheckBoxInStatisticsTab, jockeyIdCheckBoxInStatisticsTab);
         onTypingInStatisticsTextFields();
@@ -57,7 +62,8 @@ public class StatisticsViewController extends MainViewController{
 
     @FXML
     public void onShowStatisticsClicked(){
-       try {
+       logger.info("User clicked 'Show statistics'");
+        try {
             Integer horseId = null;
             Integer jockeyId = null;
             if(!horseIdTextFieldInStatisticsTab.getText().isEmpty()){

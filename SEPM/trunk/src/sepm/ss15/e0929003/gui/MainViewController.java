@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
 
@@ -25,6 +27,7 @@ public class MainViewController<T> {
     protected final String REGEXTFORINTEGERS="^[-]?[0-9][0-9]?$";
     protected Service service;
     protected Stage primaryStage;
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private TabPane tabPane;
@@ -38,6 +41,7 @@ public class MainViewController<T> {
     private RacesViewController racesController;
 
     public void initialize() {
+        logger.debug("Initialized.");
     }
 
     public void setServicesAndFillTablesWithData(Service service) throws ServiceException {
@@ -56,6 +60,7 @@ public class MainViewController<T> {
 
     @FXML
     public void onLoadTestDataClicked(){
+        logger.info("User clicked 'Load test data'");
         Optional<ButtonType> result = showAlertDialog("Load test data", "", "Load test data? Actual data will be lost.", Alert.AlertType.CONFIRMATION);
         if (result.get() == ButtonType.OK) {
             try {
@@ -68,20 +73,26 @@ public class MainViewController<T> {
                 showAlertDialog("Load test data", "Couldn't load test data", e.getMessage(), Alert.AlertType.WARNING);
             }
         }
+        else{
+            logger.info("User canceled.");
+        }
     }
 
     @FXML
     public void onNewHorseClicked() throws IOException{
+        logger.info("User clicked 'New Horse...'");
         horsesController.openNewWindow(Mode.CREATE);
     }
 
     @FXML
     public void onNewJockeyClicked() throws IOException{
+        logger.info("User clicked 'New Jockey...'");
         jockeysController.openNewWindow(Mode.CREATE);
     }
 
     @FXML
     private void onNewRaceClicked() throws IOException {
+        logger.info("User clicked 'New Race...'");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RaceSimulationView.fxml"));
         AnchorPane anchorPane = loader.load();
         Scene scene = new Scene(anchorPane);
@@ -106,19 +117,25 @@ public class MainViewController<T> {
 
     @FXML
     public void onExitClicked(){
+        logger.info("User clicked 'Exit'");
         Optional<ButtonType> result = showAlertDialog("Exit", "", "Exit application?", Alert.AlertType.CONFIRMATION);
         if (result.get() == ButtonType.OK) {
             primaryStage.close();
+            try {
+                service.close();
+            } catch (ServiceException e) {
+                showAlertDialog("Exit application", "", e.getMessage(), Alert.AlertType.WARNING);
+            }
         }
-        try {
-            service.close();
-        } catch (ServiceException e) {
-            showAlertDialog("Exit application", "", e.getMessage(), Alert.AlertType.WARNING);
+        else{
+            logger.info("User canceled");
         }
+
     }
 
     @FXML
     public void onAboutClicked(){
+        logger.info("User clicked 'About'");
         showAlertDialog("About","","Wendy's Rennpferde\nVersion 1.0",Alert.AlertType.INFORMATION);
     }
 
@@ -146,6 +163,7 @@ public class MainViewController<T> {
                 deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                        logger.info("User clicked 'Delete'");
                         onDeleteClicked();
                     }
                 });
@@ -153,6 +171,7 @@ public class MainViewController<T> {
                     @Override
                     public void handle(ActionEvent event) {
                         try {
+                            logger.info("User clicked 'Edit'");
                             openNewWindow(mode);
                         } catch (IOException e) {}
                     }

@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.RaceResult;
 import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
@@ -12,6 +14,8 @@ import sepm.ss15.e0929003.service.ServiceException;
 import java.util.List;
 
 public class RacesViewController extends MainViewController {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private TableView<RaceResult> raceResultsTable;
@@ -35,6 +39,7 @@ public class RacesViewController extends MainViewController {
         luckFactorColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("luckFactor"));
         skillColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("jockeySkillCalc"));
         averageSpeedColumn.setCellValueFactory(new PropertyValueFactory<RaceResult, String>("averageSpeed"));
+        logger.debug("Initialized.");
     }
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
@@ -74,6 +79,7 @@ public class RacesViewController extends MainViewController {
 
     @FXML
     public void onRaceSearchButtonClicked(){
+        logger.info("User clicked 'Search'");
         Integer raceId = null;
         Integer horseId = null;
         Integer jockeyId = null;

@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
@@ -20,6 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class JockeysViewController extends MainViewController {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private TableView<Jockey> jockeyTable;
@@ -43,6 +47,7 @@ public class JockeysViewController extends MainViewController {
         jockeyCountryColumn.setCellValueFactory(new PropertyValueFactory<Jockey, String>("country"));
         jockeySkillColumn.setCellValueFactory(new PropertyValueFactory<Jockey, String>("skill"));
         setRowFactory(Mode.EDIT, jockeyTable);
+        logger.debug("Initialized.");
     }
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
@@ -67,6 +72,7 @@ public class JockeysViewController extends MainViewController {
 
     @FXML
     public void onSkillCheckBoxSelected(){
+        logger.info("User selected/unselected checkbox 'Skill'");
         setDisabled(skillHBox, skillCheckBox, fromSkillTextField, toSkillTextField, fromSkillLabel, toSkillLabel);
         onTypingInJockeyTextFields();
     }
@@ -80,6 +86,7 @@ public class JockeysViewController extends MainViewController {
 
     @FXML
     public void onJockeySearchButtonClicked(){
+        logger.info("User clicked 'Search'");
         List<Jockey> list = null;
         try {
             if(skillCheckBox.isSelected()){
@@ -126,7 +133,10 @@ public class JockeysViewController extends MainViewController {
             if (result.get() == ButtonType.OK) {
                 service.deleteJockey(j);
                 jockeyTable.getItems().remove(j);
+                logger.info("User deleted jockey");
                 showAlertDialog("Delete jockey", "", "Jockey deleted successfully.", Alert.AlertType.INFORMATION);
+            } else{
+                logger.info("User canceled");
             }
         } catch (ServiceException e) {
             showAlertDialog("Delete jockey", "Couldn't delete jockey.", e.getMessage(), Alert.AlertType.WARNING);
