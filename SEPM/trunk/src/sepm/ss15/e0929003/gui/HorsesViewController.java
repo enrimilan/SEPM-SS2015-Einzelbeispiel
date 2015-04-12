@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.Horse;
 import sepm.ss15.e0929003.service.Service;
 import sepm.ss15.e0929003.service.ServiceException;
@@ -25,6 +27,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class HorsesViewController extends MainViewController {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private TableView<Horse> horseTable;
@@ -51,6 +55,7 @@ public class HorsesViewController extends MainViewController {
         horseMaxSpeedColumn.setCellValueFactory(new PropertyValueFactory<Horse, String>("maxSpeed"));
         horseTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Horse>() {
             public void changed(ObservableValue<? extends Horse> observable, Horse oldValue, Horse newValue) {
+                logger.info("User selected row - showing picture for the selected horse");
                 if(newValue==null || newValue.getPicture().isEmpty()){
                     horseImageView.setVisible(false);
                 }
@@ -67,6 +72,7 @@ public class HorsesViewController extends MainViewController {
             }
         });
         setRowFactory(Mode.EDIT,horseTable);
+        logger.debug("Initialized.");
     }
 
     public void setServiceAndFillTableWithData(Service service) throws ServiceException{
@@ -98,6 +104,7 @@ public class HorsesViewController extends MainViewController {
 
     @FXML
     public void onHorseCheckBoxesSelected(){
+        logger.info("User selected/unselected checkbox");
         setDisabled(ageHBox, ageCheckBox, fromAgeTextField, toAgeTextField, fromAgeLabel, toAgeLabel);
         setDisabled(minSpeedHBox, minSpeedCheckBox, fromMinSpeedTextField, toMinSpeedTextField, fromMinSpeedLabel, toMinSpeedLabel);
         setDisabled(maxSpeedHBox, maxSpeedCheckBox, fromMaxSpeedTextField, toMaxSpeedTextField, fromMaxSpeedLabel, toMaxSpeedLabel);
@@ -115,6 +122,7 @@ public class HorsesViewController extends MainViewController {
     }
     @FXML
     public void onHorseSearchButtonClicked(){
+        logger.info("User clicked 'Search'");
         List<Horse> list = null;
         Integer fromAge=null,toAge=null;
         Double fromMinSpeed=null,toMinSpeed=null,fromMaxSpeed=null,toMaxSpeed=null;
@@ -181,7 +189,11 @@ public class HorsesViewController extends MainViewController {
             if (result.get() == ButtonType.OK) {
                 service.deleteHorse(h);
                 horseTable.getItems().remove(h);
+                logger.info("User deleted horse");
                 showAlertDialog("Delete horse", "", "Horse deleted successfully.", Alert.AlertType.INFORMATION);
+            }
+            else{
+                logger.info("User canceled");
             }
         } catch (ServiceException e) {
             showAlertDialog("Delete horse", "Couldn't delete horse.", e.getMessage(), Alert.AlertType.WARNING);

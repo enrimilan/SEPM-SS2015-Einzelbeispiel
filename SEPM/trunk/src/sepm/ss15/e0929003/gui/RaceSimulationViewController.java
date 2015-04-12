@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sepm.ss15.e0929003.entities.Horse;
 import sepm.ss15.e0929003.entities.Jockey;
 import sepm.ss15.e0929003.entities.RaceResult;
@@ -27,6 +29,8 @@ public class RaceSimulationViewController {
     private boolean horseIsSelected;
     private boolean jockeyIsSelected;
     private RacesViewController racesController;
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     @FXML
     private TableView<Horse> horseTable;
@@ -84,6 +88,7 @@ public class RaceSimulationViewController {
                 deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                        logger.info("User clicked 'Remove from list'");
                         onRemoveFromListClicked();
                     }
                 });
@@ -96,6 +101,7 @@ public class RaceSimulationViewController {
                 return row;
             }
         });
+        logger.debug("Initialized.");
     }
 
     public void setStage(Stage stage){
@@ -119,6 +125,7 @@ public class RaceSimulationViewController {
 
     @FXML
     public void onAddToRaceButtonClicked(){
+        logger.info("User clicked 'Add to race'");
         try {
             Jockey selectedJockey = jockeyTable.getSelectionModel().getSelectedItem();
             Horse selectedHorse = horseTable.getSelectionModel().getSelectedItem();
@@ -138,8 +145,10 @@ public class RaceSimulationViewController {
 
     @FXML
     public void onStartSimulationButtonClicked(){
+        logger.info("User clicked 'Start simulation'");
         Optional<ButtonType> result = racesController.showAlertDialog("Race Simulation", "", "Start race simulation?", Alert.AlertType.CONFIRMATION);
         if (result.get() == ButtonType.OK) {
+            logger.info("User confirmed");
             try {
                 List<RaceResult> results = service.startRaceSimulation();
                 racesController.setRaceId(results.get(0).getRaceId());
@@ -150,18 +159,26 @@ public class RaceSimulationViewController {
                 racesController.showAlertDialog("Race simulation", "Race simulation failed.", e.getMessage(), Alert.AlertType.WARNING);
             }
         }
-
+        else{
+            logger.info("User canceled");
+        }
     }
 
     @FXML
     public void onAbortRaceButtonClicked(){
+        logger.info("User clicked 'Abort'");
         Optional<ButtonType> result = racesController.showAlertDialog("Abort race", "", "Abort race? Data will be lost.", Alert.AlertType.CONFIRMATION);
         if (result.get() == ButtonType.OK) {
+            logger.info("User clicked 'OK'");
             stage.close();
+        }
+        else{
+            logger.info("User clicked 'Cancel'");
         }
     }
 
     private void onRemoveFromListClicked(){
+        logger.info("User clicked 'Remove from list'");
         RaceResult selectedRaceResult = raceResultsTable.getSelectionModel().getSelectedItem();
         Integer jockeyId = selectedRaceResult.getJockeyId();
         Integer horseId = selectedRaceResult.getHorseId();

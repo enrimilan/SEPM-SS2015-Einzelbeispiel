@@ -145,6 +145,7 @@ public class SimpleService implements Service {
     @Override
     public void createNewRace() throws ServiceException{
         participants.clear();
+        logger.debug("Participants list cleared");
     }
 
     @Override
