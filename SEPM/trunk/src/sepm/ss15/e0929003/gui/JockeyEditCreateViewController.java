@@ -72,7 +72,11 @@ public class JockeyEditCreateViewController {
         if (mode == Mode.CREATE) {
             try {
                 Jockey j = service.createJockey(jockey);
-                if(jockeysViewController.getFromSkill()!=null && jockeysViewController.getToSkill()!=null &&jockeysViewController.getFromSkill()<j.getSkill() && jockeysViewController.getToSkill()>j.getSkill()){
+                if(jockeysViewController.getFromSkill()!=null && jockeysViewController.getToSkill()!=null &&jockeysViewController.getFromSkill()<=j.getSkill() && jockeysViewController.getToSkill()>=j.getSkill()){
+                    jockeyTable.getItems().add(j);
+                    jockeyTable.getSelectionModel().selectLast();
+                }
+                else if(jockeysViewController.getFromSkill()==null && jockeysViewController.getToSkill()==null){
                     jockeyTable.getItems().add(j);
                     jockeyTable.getSelectionModel().selectLast();
                 }
